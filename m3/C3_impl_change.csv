@@ -1,0 +1,6 @@
+TestResult.DisplayName,TestResult.Outcome,TestResult.Duration,TestResult.ResourceCount,RandomSeed
+Percent (well-formedness),Passed,00:00:00.1530846,3996,0
+Percent (correctness),Passed,00:00:00.0954883,3362,0
+Ratio (well-formedness),Passed,00:00:00.0689788,4437,0
+Ratio (correctness),Passed,00:00:00.0501539,4451,0
+Trend (correctness),Passed,00:00:00.0227067,3869,0

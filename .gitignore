@@ -1,0 +1,18 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dafny build artifacts
+*.dfy.bak
+*.dll
+*.exe
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
