@@ -12,7 +12,7 @@
       "source": "m3/generated/local/contract_IB.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_IB.dfy",
       "verifier_passed": true,
-      "source_sha256": "b7be58adf15c45df7401c8d1088f02c45d70dd60c3c905f1f2cf3e20620260a4",
+      "source_sha256": "a29ce3b1ce1d4d5458f73d042d0255e6ca0456393b986292e434bc6832369818",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     },
     {
@@ -26,7 +26,7 @@
       "source": "m3/generated/local/contract_PC.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_PC.dfy",
       "verifier_passed": true,
-      "source_sha256": "3eba3054bd2ab6ce69640c33e26276d207fd94d3d02f258ecf4aee9d35d6b18f",
+      "source_sha256": "eb8eef6c7851c75bf4bb98327e531dd6cca0f7869d54ae8535a961c3aeec1ffe",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     },
     {
@@ -42,8 +42,8 @@
       "source": "m3/generated/local/contract_PCIB.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_PCIB.dfy",
       "verifier_passed": false,
-      "source_sha256": "9cf8d5337434b6012673c9813b72b96d9068443c80e6ea27d6c06d13decfadc6",
-      "log_sha256": "be12c5ec9a3da76682079e3a28b82343450f137517b731d161d8ed4cc15b6af9"
+      "source_sha256": "2119133bc402f5e07af37ce979a314b590c8efb68dbf3d18a5a41a6e4fdabc5f",
+      "log_sha256": "317dd6d8cf8d1813cf301fedaa10cd068c3bc43fe45a7ebf0578d05179fc6290"
     },
     {
       "retained_contract_atoms": [],
@@ -51,7 +51,7 @@
       "source": "m3/generated/local/contract_none.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_none.dfy",
       "verifier_passed": true,
-      "source_sha256": "bc40f5192a84d9aa1027a91d8e62a0ccfe08995984ba02cb041c84260f324045",
+      "source_sha256": "13e00612f7a5fe5774d6e7cc74233be888bb1e3acf82ce9a7f61fb16c64263f2",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     }
   ]

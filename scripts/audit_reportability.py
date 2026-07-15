@@ -68,6 +68,43 @@ def as_lever_lists(sets):
     return [m3.sorted_levers(s) for s in sets]
 
 
+def cross_realization(scope, data):
+    """Evidence that ResidualFaithfulness is a cross-realization conformance
+    check, not a hash-identity tautology: for each T, compare the source hash of
+    the implementation residual for betaSet(T) against the independently authored
+    contract residual for T. They must DIFFER (different generators/surface),
+    while their measured verifier outcomes may still agree."""
+    impl_hash, contract_hash = {}, {}
+    for m in data["measurements"]:
+        if m["scope"] != scope:
+            continue
+        if m["kind"] == "impl":
+            impl_hash[frozenset(m["retained_levers"])] = m["source_sha256"]
+        else:
+            contract_hash[frozenset(m["retained_atoms"])] = m["source_sha256"]
+    rows = []
+    all_independent = True
+    for t in m3.powerset(m3.I):
+        ih = impl_hash[m3.beta_set(t)]
+        ch = contract_hash[t]
+        differ = (ih != ch)
+        all_independent = all_independent and differ
+        rows.append({
+            "retained_atoms": m3.sorted_atoms(t),
+            "beta_set_levers": m3.sorted_levers(m3.beta_set(t)),
+            "impl_betaset_source_sha256": ih,
+            "contract_source_sha256": ch,
+            "source_hashes_differ": differ,
+        })
+    return {
+        "independent_source_realization": all_independent,
+        "note": ("Implementation and reference-contract residuals are produced by "
+                 "different generators with different surface syntax; identical "
+                 "source hashes would indicate a construction tautology."),
+        "rows": rows,
+    }
+
+
 def audit_scope(scope, sat_phi, sat_psi, data):
     sp, ps = sat_phi[scope], sat_psi[scope]
 
@@ -101,6 +138,7 @@ def audit_scope(scope, sat_phi, sat_psi, data):
         "raw_grouped_image": as_atom_lists(raw_img),
         "grouped_repairs": as_atom_lists(grouped),
         "contract_repairs": as_atom_lists(contract),
+        "cross_realization": cross_realization(scope, data),
         "residual_faithfulness": {
             "result": rf_ok, "checked_cases": rf_checked, "counterexamples": rf_cex},
         "group_soundness": {

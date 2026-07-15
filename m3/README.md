@@ -150,8 +150,17 @@ Notes:
   holds (M3 `audit_cost_collapse`).
 * `GroupedRepair` recomputes inclusion-minimality over the grouped image; it is
   not merely `groupTouchAny(RawRepair)` deduplicated.
-* `SatPsi` is the measured outcome of an **independently materialized**
-  block-aligned artifact, not a code alias of `SatPhi`.
+* `SatPsi` is the measured outcome of a block-aligned artifact produced by a
+  **separate generator** (`scripts/contract_realization.py`), authored directly
+  from contract-atom meaning with different surface syntax (named contract
+  predicates), **not** by feeding `betaSet(T)` into the implementation renderer
+  and **not** a code alias of `SatPhi`. The implementation and contract
+  residuals therefore have **different source hashes** (recorded per `T` under
+  `cross_realization` in each audit JSON), so `ResidualFaithfulness` is a
+  **cross-realization conformance check** between two independent encodings, not
+  a construction tautology. It remains a conformance audit between two encodings
+  intended to correspond — **not** an independent semantic theorem: a correct
+  pair of encodings agrees, and an encoding bug on either side makes it FAIL.
 * The prior definition "low-level repairs under `rho` equal repairs under `Q`" is
   **removed**; exactness is `GroupedRepair(G) iff ContractRepair(G)`.
 
@@ -284,10 +293,12 @@ m3/
             reportability_audit_{local,closed}.json
             candidate_attribute_validity.json
             summary.md   manifest.sha256.json
-scripts/  m3lib.py  generate_dafny_variants.py  run_dafny_lattice.py
-          audit_reportability.py  reproduce.py
+scripts/  m3lib.py  generate_dafny_variants.py (implementation-lever realization)
+          contract_realization.py (independent reference-contract realization)
+          run_dafny_lattice.py  audit_reportability.py  reproduce.py
 tests/    test_reportability_definitions.py
           test_expected_local_boundary.py  test_expected_closed_boundary.py
+          test_cross_realization_independence.py
 ```
 
 `m3/results/manifest.sha256.json` lists SHA-256 of every tracked artifact for

@@ -1,7 +1,8 @@
 {
   "schema_version": "m3-contract-reference-1.0",
-  "description": "Artifact-defined reference predicate SatPsi. For each retained contract-atom set T subseteq I, the block-aligned reference artifact keeps exactly the levers betaSet(T) and applies the edits for all other levers. SatPsi_scope(T) is the MEASURED verification outcome of that independently materialized artifact -- it is not defined as an alias of SatPhi.",
+  "description": "Artifact-defined reference predicate SatPsi. For each retained contract-atom set T subseteq I, the reference artifact is produced by a SEPARATE generator (scripts/contract_realization.py) authored directly from contract-atom meaning (PC/IB retention) with different surface syntax (named contract predicates), NOT by feeding betaSet(T) into the implementation-lever renderer. SatPsi_scope(T) is the MEASURED verification outcome of that independently generated artifact. Implementation and contract residual source hashes differ (see cross_realization in results/reportability_audit_<scope>.json), so ResidualFaithfulness is a cross-realization conformance check rather than a construction tautology.",
   "reference_predicate_status": "artifact-defined",
+  "realization_independence": "implementation residuals: scripts/generate_dafny_variants.py (levers T,P,D); reference-contract residuals: scripts/contract_realization.py (atoms PC,IB). Different generators, different source hashes, conformance compared via ResidualFaithfulness.",
   "not_promoted_to": [
     "semantic Dafny contract",
     "Lean-verified contract",

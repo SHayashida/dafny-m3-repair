@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import m3lib as m3
+import contract_realization
 
 ROOT = Path(__file__).resolve().parents[1]
 GEN = ROOT / "m3" / "generated"
@@ -128,7 +129,14 @@ def main():
     (GEN / "closed").mkdir(parents=True, exist_ok=True)
     written = 0
     for rec in variant_records():
-        text = render_program(rec["retained_levers_set"], rec["scope"])
+        if rec["kind"] == "impl":
+            # implementation-lever realization
+            text = render_program(rec["retained_levers_set"], rec["scope"])
+        else:
+            # INDEPENDENT reference-contract realization, authored from the
+            # contract-atom meaning (not from betaSet(T) via render_program).
+            text = contract_realization.render_contract_program(
+                rec["retained_atoms_set"], rec["scope"])
         rec["path"].write_text(text, encoding="utf-8", newline="\n")
         written += 1
     print(f"generated {written} Dafny source variants under {GEN}")
