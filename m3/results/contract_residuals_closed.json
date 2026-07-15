@@ -1,0 +1,58 @@
+{
+  "scope": "closed_world",
+  "kind": "contract_residuals",
+  "rows": [
+    {
+      "retained_contract_atoms": [
+        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+      ],
+      "block_aligned_lever_set": [
+        "KEEP_DIRECT_PERCENT_CALL"
+      ],
+      "source": "m3/generated/closed/contract_IB.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_IB.dfy",
+      "verifier_passed": false,
+      "source_sha256": "36705950d40b5b62761a36b93b132b2899bcdbd5b6170066c6479fc615cf2abd",
+      "log_sha256": "882e224dd789ccdcca53bd82a5b1402aa9f8bbe2df5e860a01882ec25e690ece"
+    },
+    {
+      "retained_contract_atoms": [
+        "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+      ],
+      "block_aligned_lever_set": [
+        "KEEP_TREND_NONZERO_DOMAIN",
+        "KEEP_PERCENT_POSITIVE_PRECONDITION"
+      ],
+      "source": "m3/generated/closed/contract_PC.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_PC.dfy",
+      "verifier_passed": true,
+      "source_sha256": "816c3fe501368ce93d488512845b9a45b179440838d8696e9f5ccda2b69ac0e3",
+      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
+    },
+    {
+      "retained_contract_atoms": [
+        "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+      ],
+      "block_aligned_lever_set": [
+        "KEEP_TREND_NONZERO_DOMAIN",
+        "KEEP_PERCENT_POSITIVE_PRECONDITION",
+        "KEEP_DIRECT_PERCENT_CALL"
+      ],
+      "source": "m3/generated/closed/contract_PCIB.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_PCIB.dfy",
+      "verifier_passed": false,
+      "source_sha256": "24751cc6d1a08fd9455d65078b56ce36549ab38a1fd905291e25b465816474a2",
+      "log_sha256": "846e19c7c5def59db978c0aa5397492f068e08bb3a6b9a671b2669013ea53248"
+    },
+    {
+      "retained_contract_atoms": [],
+      "block_aligned_lever_set": [],
+      "source": "m3/generated/closed/contract_none.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_none.dfy",
+      "verifier_passed": false,
+      "source_sha256": "8684aa9aa2c98815e7c0574964fa0db04cd95d3c35a9cc1ffcdada3861df01ca",
+      "log_sha256": "74a9bc2686f51f75e93a7041b92c3c097fa6df6f472bc57e42ec5c2a2bc81bb8"
+    }
+  ]
+}

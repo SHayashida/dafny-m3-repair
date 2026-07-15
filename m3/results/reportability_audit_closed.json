@@ -1,0 +1,426 @@
+{
+  "schema_version": "m3-audit-1.0",
+  "dafny_version": "4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2",
+  "dafny_version_match": true,
+  "scope": "closed_world",
+  "active_contract_atoms": [
+    "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+    "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+  ],
+  "active_implementation_levers": [
+    "KEEP_TREND_NONZERO_DOMAIN",
+    "KEEP_PERCENT_POSITIVE_PRECONDITION",
+    "KEEP_DIRECT_PERCENT_CALL"
+  ],
+  "beta": {
+    "PC": [
+      "KEEP_TREND_NONZERO_DOMAIN",
+      "KEEP_PERCENT_POSITIVE_PRECONDITION"
+    ],
+    "IB": [
+      "KEEP_DIRECT_PERCENT_CALL"
+    ]
+  },
+  "blocks_disjoint": true,
+  "blocks_nonempty": true,
+  "repair_atomicity": false,
+  "sat_phi": {
+    "none": false,
+    "T": true,
+    "D": false,
+    "P": false,
+    "TD": true,
+    "TP": true,
+    "PD": false,
+    "TPD": false
+  },
+  "sat_psi": {
+    "none": false,
+    "PC": true,
+    "IB": false,
+    "PCIB": false
+  },
+  "raw_repairs": [
+    [
+      "KEEP_DIRECT_PERCENT_CALL"
+    ],
+    [
+      "KEEP_PERCENT_POSITIVE_PRECONDITION"
+    ]
+  ],
+  "raw_grouped_image": [
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ],
+    [
+      "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+    ]
+  ],
+  "grouped_repairs": [
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ],
+    [
+      "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+    ]
+  ],
+  "contract_repairs": [
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ]
+  ],
+  "residual_faithfulness": {
+    "result": true,
+    "checked_cases": [
+      {
+        "retained_atoms": [],
+        "beta_set_levers": [],
+        "sat_phi_beta_set": false,
+        "sat_psi": false,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_beta_set": true,
+        "sat_psi": true,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_beta_set": false,
+        "sat_psi": false,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_beta_set": false,
+        "sat_psi": false,
+        "consistent": true
+      }
+    ],
+    "counterexamples": []
+  },
+  "group_soundness": {
+    "result": false,
+    "checked_cases": [
+      {
+        "deleted_levers": [],
+        "sat_phi_retained": false,
+        "group_touch_any": [],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN"
+        ],
+        "sat_phi_retained": false,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": false
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": false,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": false,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": false,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": false,
+        "sound": false
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": false,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": false,
+        "sound": true
+      }
+    ],
+    "counterexamples": [
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_retained": false
+      },
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false
+      }
+    ]
+  },
+  "psi_deletion_monotonicity": {
+    "result": false,
+    "checked_cases": [
+      {
+        "retained_T": [],
+        "retained_Tprime": [],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": false,
+        "monotone": false
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      }
+    ],
+    "counterexamples": [
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": false
+      }
+    ]
+  },
+  "grouped_correctness": {
+    "result": false,
+    "checked_cases": [
+      {
+        "G": [],
+        "grouped_repair": false,
+        "contract_repair": false,
+        "equal": true
+      },
+      {
+        "G": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "grouped_repair": true,
+        "contract_repair": false,
+        "equal": false
+      },
+      {
+        "G": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "grouped_repair": true,
+        "contract_repair": true,
+        "equal": true
+      },
+      {
+        "G": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "grouped_repair": false,
+        "contract_repair": false,
+        "equal": true
+      }
+    ],
+    "counterexamples": [
+      {
+        "G": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "grouped_repair": true,
+        "contract_repair": false
+      }
+    ]
+  },
+  "m3c_characterization": {
+    "applicable": false,
+    "assumptions": {
+      "blocks_disjoint": true,
+      "residual_faithfulness": true,
+      "psi_deletion_monotonicity": false
+    },
+    "finite_result": null,
+    "note": "M3-C characterization NOT APPLICABLE: a declared finite assumption failed; GroupSoundness and GroupedCorrectness results are reported as independent measured facts, not as a proof of the iff."
+  }
+}

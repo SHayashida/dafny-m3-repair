@@ -1,0 +1,12 @@
+m3/generated/closed/impl_TPD.dfy(17,14): Error: a precondition for this call could not be proved
+   |
+17 | { r := Percent(delta, span); }
+   |               ^
+
+m3/generated/closed/impl_TPD.dfy(7,17): Related location: this is the precondition that could not be proved
+  |
+7 |   requires whole > 0
+  |                  ^
+
+
+Dafny program verifier finished with 6 verified, 1 error

@@ -16,3 +16,11 @@ Thumbs.db
 
 # Temp
 *.tmp
+
+# Personal / local environment settings (not shared)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,41 @@
+{
+  "schema_version": "m3-contract-1.0",
+  "description": "Non-atomic reportability contract (Sen24 M3) for the Percent/Trend Dafny minimal example. Retained-set convention: a lever means 'keep the original commitment'; deleting a lever applies its edit.",
+  "implementation_levers": {
+    "KEEP_TREND_NONZERO_DOMAIN": {
+      "code": "T",
+      "kept_commitment": "Trend.requires stays span != 0",
+      "delete_applies_edit": "C1_caller_strengthen",
+      "edit_detail": "Trend.requires span != 0 => span > 0"
+    },
+    "KEEP_PERCENT_POSITIVE_PRECONDITION": {
+      "code": "P",
+      "kept_commitment": "Percent.requires stays whole > 0",
+      "delete_applies_edit": "C2_callee_weaken",
+      "edit_detail": "Percent.requires whole > 0 => whole != 0"
+    },
+    "KEEP_DIRECT_PERCENT_CALL": {
+      "code": "D",
+      "kept_commitment": "Trend body stays a direct Percent call",
+      "delete_applies_edit": "C3_impl_change",
+      "edit_detail": "Trend body direct call => guarded implementation (span<=0 returns 0)"
+    }
+  },
+  "contract_atoms": {
+    "ORIGINAL_PUBLIC_CONTRACT_SURFACE": {
+      "code": "PC",
+      "beta": ["KEEP_TREND_NONZERO_DOMAIN", "KEEP_PERCENT_POSITIVE_PRECONDITION"]
+    },
+    "ORIGINAL_IMPLEMENTATION_BEHAVIOR": {
+      "code": "IB",
+      "beta": ["KEEP_DIRECT_PERCENT_CALL"]
+    }
+  },
+  "block_map_properties": {
+    "pairwise_disjoint": true,
+    "nonempty": true,
+    "repair_atomicity": false,
+    "repair_atomicity_definition": "forall a in I, |beta(a)| = 1",
+    "note": "|beta(ORIGINAL_PUBLIC_CONTRACT_SURFACE)| = 2, so RepairAtomicity is false and ORIGINAL_PUBLIC_CONTRACT_SURFACE is non-atomic. This is an M3-B (non-atomic) case, NOT M3-A. Site-restricted candidate generation (A-only / B-only) is a separate policy and is NOT RepairAtomicity."
+  }
+}

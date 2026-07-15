@@ -1,0 +1,33 @@
+{
+  "schema_version": "m3-contract-reference-1.0",
+  "description": "Artifact-defined reference predicate SatPsi. For each retained contract-atom set T subseteq I, the block-aligned reference artifact keeps exactly the levers betaSet(T) and applies the edits for all other levers. SatPsi_scope(T) is the MEASURED verification outcome of that independently materialized artifact -- it is not defined as an alias of SatPhi.",
+  "reference_predicate_status": "artifact-defined",
+  "not_promoted_to": [
+    "semantic Dafny contract",
+    "Lean-verified contract",
+    "general formal-model-repair contract"
+  ],
+  "retained_contract_sets": [
+    {
+      "retained_atoms": ["ORIGINAL_PUBLIC_CONTRACT_SURFACE", "ORIGINAL_IMPLEMENTATION_BEHAVIOR"],
+      "beta_set_levers": ["KEEP_TREND_NONZERO_DOMAIN", "KEEP_PERCENT_POSITIVE_PRECONDITION", "KEEP_DIRECT_PERCENT_CALL"],
+      "artifact_basename": "contract_PCIB.dfy"
+    },
+    {
+      "retained_atoms": ["ORIGINAL_PUBLIC_CONTRACT_SURFACE"],
+      "beta_set_levers": ["KEEP_TREND_NONZERO_DOMAIN", "KEEP_PERCENT_POSITIVE_PRECONDITION"],
+      "artifact_basename": "contract_PC.dfy"
+    },
+    {
+      "retained_atoms": ["ORIGINAL_IMPLEMENTATION_BEHAVIOR"],
+      "beta_set_levers": ["KEEP_DIRECT_PERCENT_CALL"],
+      "artifact_basename": "contract_IB.dfy"
+    },
+    {
+      "retained_atoms": [],
+      "beta_set_levers": [],
+      "artifact_basename": "contract_none.dfy"
+    }
+  ],
+  "residual_faithfulness_check": "forall T subseteq I: SatPhi(betaSet(T)) iff SatPsi(T), decided row-by-row across all 4 T in results/reportability_audit_<scope>.json"
+}
