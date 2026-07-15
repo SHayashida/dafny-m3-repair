@@ -15,8 +15,12 @@ and NOT by feeding betaSet(T) into the implementation-lever renderer.
 Contract-atom semantics (retained-set convention):
   * Keep PC  => the public API preserves its ORIGINAL acceptance surface:
                 Trend accepts span != 0, Percent accepts whole > 0.
-    Delete PC => the public acceptance surface is relaxed to the repaired
-                surface: Trend accepts span > 0, Percent accepts whole != 0.
+    Delete PC => replace the original public-contract surface with the declared
+                repaired surface: Trend is STRENGTHENED from != 0 to > 0 (its
+                input domain shrinks) while Percent is WEAKENED from > 0 to != 0
+                (its input domain grows). The block is therefore a
+                mixed-direction transformation, not a relaxation -- which is why
+                Psi-deletion monotonicity fails in the closed-world scope.
   * Keep IB  => Trend realizes the ORIGINAL behavior: a direct delegation.
     Delete IB => Trend realizes the guarded behavior.
 
@@ -29,8 +33,11 @@ conformance audit, not a hash-identity tautology):
     implementation-behavior block).
 
 The intended semantics correspond to the implementation realization, so for a
-correct pair of encodings SatPhi(betaSet(T)) and SatPsi(T) agree. A discrepancy
-(e.g. an encoding bug on either side) makes ResidualFaithfulness FAIL. This is a
+correct pair of encodings SatPhi(betaSet(T)) and SatPsi(T) agree. A realization
+defect that changes the measured feasibility outcome on one side but not the
+corresponding outcome on the other side is detected as a ResidualFaithfulness
+failure. Correlated defects (the same conceptual error on both sides) and defects
+that preserve all measured Boolean outcomes may remain undetected. This is a
 cross-realization conformance check, not an independent semantic theorem.
 """
 
@@ -79,7 +86,7 @@ def render_contract_program(retained_atoms, scope):
         "// REFERENCE-CONTRACT realization (independent from the lever renderer).\n"
         f"// scope                 = {scope}\n"
         f"// retained contract atoms T = {sorted(m3.ATOM_CODE[a] for a in retained_atoms)}\n"
-        f"// public contract surface   = {'ORIGINAL' if pc_kept else 'relaxed/repaired'}\n"
+        f"// public contract surface   = {'ORIGINAL' if pc_kept else 'altered/repaired (Trend !=0=>>0 strengthened, Percent >0=>!=0 weakened)'}\n"
         f"// implementation behavior   = {'ORIGINAL (direct)' if ib_kept else 'guarded'}\n"
     )
 

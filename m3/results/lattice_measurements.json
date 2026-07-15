@@ -32,19 +32,6 @@
       "kind": "impl",
       "scope": "local",
       "retained_levers": [
-        "KEEP_TREND_NONZERO_DOMAIN"
-      ],
-      "source": "m3/generated/local/impl_T.dfy",
-      "log": "m3/generated/local/impl_T.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\impl_T.dfy",
-      "verifier_passed": true,
-      "source_sha256": "e9f5996c43a38064efa751f210f6f5b12ea7516979f07d9d17fa44bed124ac19",
-      "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
-    },
-    {
-      "kind": "impl",
-      "scope": "local",
-      "retained_levers": [
         "KEEP_DIRECT_PERCENT_CALL"
       ],
       "source": "m3/generated/local/impl_D.dfy",
@@ -58,14 +45,13 @@
       "kind": "impl",
       "scope": "local",
       "retained_levers": [
-        "KEEP_PERCENT_POSITIVE_PRECONDITION",
         "KEEP_TREND_NONZERO_DOMAIN"
       ],
-      "source": "m3/generated/local/impl_TP.dfy",
-      "log": "m3/generated/local/impl_TP.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\impl_TP.dfy",
+      "source": "m3/generated/local/impl_T.dfy",
+      "log": "m3/generated/local/impl_T.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\impl_T.dfy",
       "verifier_passed": true,
-      "source_sha256": "3eba3054bd2ab6ce69640c33e26276d207fd94d3d02f258ecf4aee9d35d6b18f",
+      "source_sha256": "e9f5996c43a38064efa751f210f6f5b12ea7516979f07d9d17fa44bed124ac19",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     },
     {
@@ -80,6 +66,20 @@
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\impl_PD.dfy",
       "verifier_passed": true,
       "source_sha256": "793d5e762403a9533fcbd94730a37c5bc7758944cc0b1fb30e9feb327b540602",
+      "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
+    },
+    {
+      "kind": "impl",
+      "scope": "local",
+      "retained_levers": [
+        "KEEP_PERCENT_POSITIVE_PRECONDITION",
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "source": "m3/generated/local/impl_TP.dfy",
+      "log": "m3/generated/local/impl_TP.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\impl_TP.dfy",
+      "verifier_passed": true,
+      "source_sha256": "3eba3054bd2ab6ce69640c33e26276d207fd94d3d02f258ecf4aee9d35d6b18f",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     },
     {
@@ -119,25 +119,9 @@
       "log": "m3/generated/local/contract_none.log",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_none.dfy",
       "verifier_passed": true,
-      "source_sha256": "13e00612f7a5fe5774d6e7cc74233be888bb1e3acf82ce9a7f61fb16c64263f2",
+      "source_sha256": "f4879af79488faa096b28dfaf7968cc6507b59393c32d62f560ab994c429425b",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
       "retained_atoms": []
-    },
-    {
-      "kind": "contract",
-      "scope": "local",
-      "retained_levers": [
-        "KEEP_DIRECT_PERCENT_CALL"
-      ],
-      "source": "m3/generated/local/contract_IB.dfy",
-      "log": "m3/generated/local/contract_IB.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_IB.dfy",
-      "verifier_passed": true,
-      "source_sha256": "a29ce3b1ce1d4d5458f73d042d0255e6ca0456393b986292e434bc6832369818",
-      "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
-      "retained_atoms": [
-        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-      ]
     },
     {
       "kind": "contract",
@@ -154,6 +138,22 @@
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
       "retained_atoms": [
         "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+      ]
+    },
+    {
+      "kind": "contract",
+      "scope": "local",
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL"
+      ],
+      "source": "m3/generated/local/contract_IB.dfy",
+      "log": "m3/generated/local/contract_IB.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_IB.dfy",
+      "verifier_passed": true,
+      "source_sha256": "97d09bf62dc5a131976f113f51d85c2db91e9ee5937efce58273e1e443ad60c0",
+      "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
+      "retained_atoms": [
+        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
       ]
     },
     {
@@ -203,19 +203,6 @@
       "kind": "impl",
       "scope": "closed_world",
       "retained_levers": [
-        "KEEP_TREND_NONZERO_DOMAIN"
-      ],
-      "source": "m3/generated/closed/impl_T.dfy",
-      "log": "m3/generated/closed/impl_T.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_T.dfy",
-      "verifier_passed": true,
-      "source_sha256": "a70f1241f8e515c4985e6b020653bf08da954ae8891a6ac95040a024fa039b7b",
-      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
-    },
-    {
-      "kind": "impl",
-      "scope": "closed_world",
-      "retained_levers": [
         "KEEP_DIRECT_PERCENT_CALL"
       ],
       "source": "m3/generated/closed/impl_D.dfy",
@@ -229,14 +216,13 @@
       "kind": "impl",
       "scope": "closed_world",
       "retained_levers": [
-        "KEEP_PERCENT_POSITIVE_PRECONDITION",
         "KEEP_TREND_NONZERO_DOMAIN"
       ],
-      "source": "m3/generated/closed/impl_TP.dfy",
-      "log": "m3/generated/closed/impl_TP.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_TP.dfy",
+      "source": "m3/generated/closed/impl_T.dfy",
+      "log": "m3/generated/closed/impl_T.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_T.dfy",
       "verifier_passed": true,
-      "source_sha256": "816c3fe501368ce93d488512845b9a45b179440838d8696e9f5ccda2b69ac0e3",
+      "source_sha256": "a70f1241f8e515c4985e6b020653bf08da954ae8891a6ac95040a024fa039b7b",
       "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
     },
     {
@@ -252,6 +238,20 @@
       "verifier_passed": false,
       "source_sha256": "e3be8b146d889acb3fbfa49e2bae4b6b1993c03d91e56614e2f32fb26217ab99",
       "log_sha256": "38e273b9484e7c42365558b1a04a00b7d12e00c7fdd5670fa7ffd2333ed5cf6d"
+    },
+    {
+      "kind": "impl",
+      "scope": "closed_world",
+      "retained_levers": [
+        "KEEP_PERCENT_POSITIVE_PRECONDITION",
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "source": "m3/generated/closed/impl_TP.dfy",
+      "log": "m3/generated/closed/impl_TP.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_TP.dfy",
+      "verifier_passed": true,
+      "source_sha256": "816c3fe501368ce93d488512845b9a45b179440838d8696e9f5ccda2b69ac0e3",
+      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
     },
     {
       "kind": "impl",
@@ -290,25 +290,9 @@
       "log": "m3/generated/closed/contract_none.log",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_none.dfy",
       "verifier_passed": false,
-      "source_sha256": "82f11eae789d1a9cf5beaa814b6cd09d30277e6df5f57f137c802a45501ebb56",
+      "source_sha256": "440ef60d5ebbb4c8c9cee0096b14f76c077fefcc3ebb26e60d0bbc8f22e6fc88",
       "log_sha256": "55a3e4f8394e50aeacce7ae58bc17725c8ba2da70e59ee126d0391e3bd13194e",
       "retained_atoms": []
-    },
-    {
-      "kind": "contract",
-      "scope": "closed_world",
-      "retained_levers": [
-        "KEEP_DIRECT_PERCENT_CALL"
-      ],
-      "source": "m3/generated/closed/contract_IB.dfy",
-      "log": "m3/generated/closed/contract_IB.log",
-      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_IB.dfy",
-      "verifier_passed": false,
-      "source_sha256": "0a8ab8b55218308f0ac579495dd9d10d7ba6a31fe48dfbf7b9a1a5d9c5fc7bc9",
-      "log_sha256": "8efc8f9b0c0fe4d10cc5d42878ae96cb535737e8bc4ab1ef7f99b0c25746277b",
-      "retained_atoms": [
-        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-      ]
     },
     {
       "kind": "contract",
@@ -325,6 +309,22 @@
       "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f",
       "retained_atoms": [
         "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+      ]
+    },
+    {
+      "kind": "contract",
+      "scope": "closed_world",
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL"
+      ],
+      "source": "m3/generated/closed/contract_IB.dfy",
+      "log": "m3/generated/closed/contract_IB.log",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\contract_IB.dfy",
+      "verifier_passed": false,
+      "source_sha256": "c1a46ed771bf4ea94ac14af32d502d498d4798537be5d777b27fac0a92db45e4",
+      "log_sha256": "8efc8f9b0c0fe4d10cc5d42878ae96cb535737e8bc4ab1ef7f99b0c25746277b",
+      "retained_atoms": [
+        "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
       ]
     },
     {

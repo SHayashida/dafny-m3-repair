@@ -12,7 +12,7 @@
       "source": "m3/generated/local/contract_IB.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_IB.dfy",
       "verifier_passed": true,
-      "source_sha256": "a29ce3b1ce1d4d5458f73d042d0255e6ca0456393b986292e434bc6832369818",
+      "source_sha256": "97d09bf62dc5a131976f113f51d85c2db91e9ee5937efce58273e1e443ad60c0",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     },
     {
@@ -51,7 +51,7 @@
       "source": "m3/generated/local/contract_none.dfy",
       "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\local\\contract_none.dfy",
       "verifier_passed": true,
-      "source_sha256": "13e00612f7a5fe5774d6e7cc74233be888bb1e3acf82ce9a7f61fb16c64263f2",
+      "source_sha256": "f4879af79488faa096b28dfaf7968cc6507b59393c32d62f560ab994c429425b",
       "log_sha256": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed"
     }
   ]

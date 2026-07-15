@@ -2,7 +2,7 @@
 // REFERENCE-CONTRACT realization (independent from the lever renderer).
 // scope                 = local
 // retained contract atoms T = []
-// public contract surface   = relaxed/repaired
+// public contract surface   = altered/repaired (Trend !=0=>>0 strengthened, Percent >0=>!=0 weakened)
 // implementation behavior   = guarded
 
 // -- public contract surface predicates --

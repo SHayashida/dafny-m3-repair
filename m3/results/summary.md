@@ -9,9 +9,9 @@ RepairAtomicity (|beta(a)|=1 for all a): **False** (false => this is an M3-B, no
 
 | predicate | result |
 |---|---|
-| RawRepair | {KEEP_PERCENT_POSITIVE_PRECONDITION} ; {KEEP_TREND_NONZERO_DOMAIN} ; {KEEP_DIRECT_PERCENT_CALL} |
+| RawRepair | {KEEP_PERCENT_POSITIVE_PRECONDITION} ; {KEEP_DIRECT_PERCENT_CALL} ; {KEEP_TREND_NONZERO_DOMAIN} |
 | GroupedRepair | {ORIGINAL_PUBLIC_CONTRACT_SURFACE} ; {ORIGINAL_IMPLEMENTATION_BEHAVIOR} |
-| ContractRepair | {ORIGINAL_IMPLEMENTATION_BEHAVIOR} ; {ORIGINAL_PUBLIC_CONTRACT_SURFACE} |
+| ContractRepair | {ORIGINAL_PUBLIC_CONTRACT_SURFACE} ; {ORIGINAL_IMPLEMENTATION_BEHAVIOR} |
 | ResidualFaithfulness | True |
 | GroupSoundness | True |
 | PsiDeletionMonotonicity | True |

@@ -159,8 +159,11 @@ Notes:
   `cross_realization` in each audit JSON), so `ResidualFaithfulness` is a
   **cross-realization conformance check** between two independent encodings, not
   a construction tautology. It remains a conformance audit between two encodings
-  intended to correspond — **not** an independent semantic theorem: a correct
-  pair of encodings agrees, and an encoding bug on either side makes it FAIL.
+  intended to correspond — **not** an independent semantic theorem. A realization
+  defect that changes the measured feasibility outcome on one side but not the
+  corresponding outcome on the other side is detected as a `ResidualFaithfulness`
+  failure; correlated defects (the same conceptual error on both sides) and
+  defects that preserve all measured Boolean outcomes may remain undetected.
 * The prior definition "low-level repairs under `rho` equal repairs under `Q`" is
   **removed**; exactness is `GroupedRepair(G) iff ContractRepair(G)`.
 

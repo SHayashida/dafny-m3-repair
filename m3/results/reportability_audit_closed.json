@@ -13,12 +13,12 @@
     "KEEP_DIRECT_PERCENT_CALL"
   ],
   "beta": {
-    "IB": [
-      "KEEP_DIRECT_PERCENT_CALL"
-    ],
     "PC": [
       "KEEP_TREND_NONZERO_DOMAIN",
       "KEEP_PERCENT_POSITIVE_PRECONDITION"
+    ],
+    "IB": [
+      "KEEP_DIRECT_PERCENT_CALL"
     ]
   },
   "blocks_disjoint": true,
@@ -27,17 +27,17 @@
   "sat_phi": {
     "none": false,
     "P": false,
-    "T": true,
     "D": false,
-    "TP": true,
+    "T": true,
     "PD": false,
+    "TP": true,
     "TD": true,
     "TPD": false
   },
   "sat_psi": {
     "none": false,
-    "IB": false,
     "PC": true,
+    "IB": false,
     "PCIB": false
   },
   "raw_repairs": [
@@ -77,18 +77,7 @@
         "retained_atoms": [],
         "beta_set_levers": [],
         "impl_betaset_source_sha256": "8684aa9aa2c98815e7c0574964fa0db04cd95d3c35a9cc1ffcdada3861df01ca",
-        "contract_source_sha256": "82f11eae789d1a9cf5beaa814b6cd09d30277e6df5f57f137c802a45501ebb56",
-        "source_hashes_differ": true
-      },
-      {
-        "retained_atoms": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "beta_set_levers": [
-          "KEEP_DIRECT_PERCENT_CALL"
-        ],
-        "impl_betaset_source_sha256": "36705950d40b5b62761a36b93b132b2899bcdbd5b6170066c6479fc615cf2abd",
-        "contract_source_sha256": "0a8ab8b55218308f0ac579495dd9d10d7ba6a31fe48dfbf7b9a1a5d9c5fc7bc9",
+        "contract_source_sha256": "440ef60d5ebbb4c8c9cee0096b14f76c077fefcc3ebb26e60d0bbc8f22e6fc88",
         "source_hashes_differ": true
       },
       {
@@ -101,6 +90,17 @@
         ],
         "impl_betaset_source_sha256": "816c3fe501368ce93d488512845b9a45b179440838d8696e9f5ccda2b69ac0e3",
         "contract_source_sha256": "0273999efdc527a8f9b4656e36905951d74e7faf66718be911a63b553711b647",
+        "source_hashes_differ": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "impl_betaset_source_sha256": "36705950d40b5b62761a36b93b132b2899bcdbd5b6170066c6479fc615cf2abd",
+        "contract_source_sha256": "c1a46ed771bf4ea94ac14af32d502d498d4798537be5d777b27fac0a92db45e4",
         "source_hashes_differ": true
       },
       {
@@ -131,17 +131,6 @@
       },
       {
         "retained_atoms": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "beta_set_levers": [
-          "KEEP_DIRECT_PERCENT_CALL"
-        ],
-        "sat_phi_beta_set": false,
-        "sat_psi": false,
-        "consistent": true
-      },
-      {
-        "retained_atoms": [
           "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
         ],
         "beta_set_levers": [
@@ -150,6 +139,17 @@
         ],
         "sat_phi_beta_set": true,
         "sat_psi": true,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_beta_set": false,
+        "sat_psi": false,
         "consistent": true
       },
       {
@@ -199,20 +199,6 @@
       },
       {
         "deleted_levers": [
-          "KEEP_TREND_NONZERO_DOMAIN"
-        ],
-        "sat_phi_retained": false,
-        "group_touch_any": [
-          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
-        ],
-        "retained_atoms_after_group_delete": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "sat_psi_retained": false,
-        "sound": true
-      },
-      {
-        "deleted_levers": [
           "KEEP_DIRECT_PERCENT_CALL"
         ],
         "sat_phi_retained": true,
@@ -227,8 +213,7 @@
       },
       {
         "deleted_levers": [
-          "KEEP_TREND_NONZERO_DOMAIN",
-          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+          "KEEP_TREND_NONZERO_DOMAIN"
         ],
         "sat_phi_retained": false,
         "group_touch_any": [
@@ -253,6 +238,21 @@
         "retained_atoms_after_group_delete": [],
         "sat_psi_retained": false,
         "sound": false
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": false,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": true
       },
       {
         "deleted_levers": [
@@ -321,26 +321,6 @@
       },
       {
         "retained_T": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "retained_Tprime": [],
-        "sat_psi_T": false,
-        "sat_psi_Tprime": false,
-        "monotone": true
-      },
-      {
-        "retained_T": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "retained_Tprime": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "sat_psi_T": false,
-        "sat_psi_Tprime": false,
-        "monotone": true
-      },
-      {
-        "retained_T": [
           "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
         ],
         "retained_Tprime": [],
@@ -361,6 +341,26 @@
       },
       {
         "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      },
+      {
+        "retained_T": [
           "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
           "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
         ],
@@ -375,10 +375,10 @@
           "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
         ],
         "retained_Tprime": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
         ],
         "sat_psi_T": false,
-        "sat_psi_Tprime": false,
+        "sat_psi_Tprime": true,
         "monotone": true
       },
       {
@@ -387,10 +387,10 @@
           "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
         ],
         "retained_Tprime": [
-          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
         ],
         "sat_psi_T": false,
-        "sat_psi_Tprime": true,
+        "sat_psi_Tprime": false,
         "monotone": true
       },
       {
@@ -429,19 +429,19 @@
       },
       {
         "G": [
-          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
-        ],
-        "grouped_repair": true,
-        "contract_repair": true,
-        "equal": true
-      },
-      {
-        "G": [
           "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
         ],
         "grouped_repair": true,
         "contract_repair": false,
         "equal": false
+      },
+      {
+        "G": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "grouped_repair": true,
+        "contract_repair": true,
+        "equal": true
       },
       {
         "G": [
