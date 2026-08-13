@@ -1,0 +1,16 @@
+{
+  "deleted_levers": [
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE"
+  ],
+  "design_lock": "case_b/design/case_b_design_lock.json",
+  "design_lock_sha256": "e057e7acd53c01877f0970de73a380a984a8802824f3578b92c96f40b9023c6f",
+  "group_mapping_sha256": "910b679cdc4341d7bfe6ef9deb1f179bbaf0aa2adc90ed49e993d90d08b423b1",
+  "retained_levers": [
+    "L1_REQUIRE_NONNEGATIVE",
+    "L3_SHIFT_BODY_BY_ONE"
+  ],
+  "schema_version": "case-b-variant-v1",
+  "source": "case_b/generated/variants/case_b_010.dfy",
+  "source_sha256": "9cc909d6c4cf5d68448f0bb910cfd38ddb2883a9128d1452e36de6fb9ff826c6",
+  "variant_id": "case_b_010"
+}

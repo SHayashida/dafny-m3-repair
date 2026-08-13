@@ -1,0 +1,54 @@
+{
+  "all_faults_rejected": true,
+  "faults": [
+    {
+      "exception_type": "MetadataError",
+      "fault": "missing_metadata",
+      "message": "metadata lever set mismatch; missing=['L1_REQUIRE_NONNEGATIVE'], unknown=[]",
+      "rejected": true
+    },
+    {
+      "exception_type": "MetadataError",
+      "fault": "conflicting_metadata",
+      "message": "line 6: duplicate/conflicting metadata for L1_REQUIRE_NONNEGATIVE",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "missing_subset_result",
+      "message": "measurement_complete=false; main result rejected",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "outcome_tampering",
+      "message": "raw-result SHA-256 binding mismatch",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "source_tampering",
+      "message": "variant-source SHA-256 binding mismatch",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "group_mapping_tampering",
+      "message": "normalized mapping hash mismatch",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "structural_invariant_corruption",
+      "message": "Min(g(F)) is not a subset of g(Min(F))",
+      "rejected": true
+    },
+    {
+      "exception_type": "ValueError",
+      "fault": "singleton_control_corruption",
+      "message": "singleton order-isomorphism equality failed",
+      "rejected": true
+    }
+  ],
+  "schema_version": "case-b-fault-injection-v1"
+}

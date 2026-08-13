@@ -1,0 +1,49 @@
+{
+  "schema_version": "m3-audit-1.0",
+  "audit_name": "CandidateAttributeValidity",
+  "disclaimer": "CandidateAttributeValidity is an application-side attribute-factuality audit. It is NOT M3 GroupSoundness and must not be presented as such.",
+  "candidates": [
+    {
+      "candidate_id": "C1",
+      "edit": "Trend.requires span != 0 => span > 0",
+      "deleted_lever": "T",
+      "input_domain_change": "caller admissible input narrowed ({!=0} -> {>0})",
+      "public_contract_changed": true,
+      "implementation_changed": false,
+      "responsibility_moved_to": "caller / upstream clients",
+      "validated_local": true,
+      "validated_closed_world": false,
+      "existing_clients_preserved": false,
+      "adopted": null,
+      "rejection_reason": "fails closed-world compatibility: existing nonzero-only upstream client (TrendUserNonzero) cannot prove the strengthened caller precondition span > 0"
+    },
+    {
+      "candidate_id": "C2",
+      "edit": "Percent.requires whole > 0 => whole != 0",
+      "deleted_lever": "P",
+      "input_domain_change": "callee admissible input expanded ({>0} -> {!=0})",
+      "public_contract_changed": true,
+      "implementation_changed": false,
+      "responsibility_moved_to": "callee",
+      "validated_local": true,
+      "validated_closed_world": true,
+      "existing_clients_preserved": true,
+      "adopted": null,
+      "rejection_reason": null
+    },
+    {
+      "candidate_id": "C3",
+      "edit": "Trend body direct call => guarded implementation",
+      "deleted_lever": "D",
+      "input_domain_change": "public admissible input unchanged; runtime behavior changes for span<0",
+      "public_contract_changed": false,
+      "implementation_changed": true,
+      "responsibility_moved_to": "implementation (no contract-level move)",
+      "validated_local": true,
+      "validated_closed_world": true,
+      "existing_clients_preserved": true,
+      "adopted": null,
+      "rejection_reason": null
+    }
+  ]
+}

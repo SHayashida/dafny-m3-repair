@@ -1,0 +1,38 @@
+{
+  "canonical_source_sha256": "d45a7f0d8b10d1a2d6eda88fd65bb07f5cdd4f37e078fa43ee21c5adb24d8112",
+  "dafny_invocation_protocol": [
+    "<resolved-dafny-executable>",
+    "verify",
+    "<variant-source>"
+  ],
+  "dafny_version_expected": "4.11.0",
+  "design_notes": [
+    "Retained-set/deletion-set convention: deleted_levers=R and retained_levers=Lambda\\R.",
+    "The fully retained canonical program intentionally has an unprovable nonnegative postcondition.",
+    "Grouping is parsed once from canonical source metadata before variant generation.",
+    "Preregistered hypothesis: g(Min(F)) differs from Min(g(F)); equality remains a valid result.",
+    "Case B is separate from M3 GroupSoundness, ResidualFaithfulness, and exactness."
+  ],
+  "generator_sha256": "b6e82883dff7e27ae7c7710304e1aca20bce6a8bd506e0ac591d4dd20173f7c0",
+  "group_mapping": {
+    "L1_REQUIRE_NONNEGATIVE": "INPUT_CONTRACT",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE": "INPUT_CONTRACT",
+    "L3_SHIFT_BODY_BY_ONE": "IMPLEMENTATION_BODY"
+  },
+  "group_mapping_sha256": "910b679cdc4341d7bfe6ef9deb1f179bbaf0aa2adc90ed49e993d90d08b423b1",
+  "groups": [
+    "INPUT_CONTRACT",
+    "IMPLEMENTATION_BODY"
+  ],
+  "lever_definition_sha256": "67fede39a5460251bf937a2ce858a709eef21f0104b174427336be09b61a1fb6",
+  "metadata_parser_sha256": "e208a354116fee5506330a80f8cd3b23cc4bfda73ecb59a4b5e6e81a9ba73b35",
+  "metadata_schema_sha256": "d7b89e20664e2f301b1e7543da53a95bf7e6e3de9876208b7275abc568910080",
+  "metadata_sha256": "3b5cf84af4b103347a12476ab979781da2f7145c5a5a2f69bb14cffc8a18442e",
+  "repair_levers": [
+    "L1_REQUIRE_NONNEGATIVE",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+    "L3_SHIFT_BODY_BY_ONE"
+  ],
+  "schema_version": "case-b-design-lock-v1",
+  "verification_timeout_seconds": 120
+}

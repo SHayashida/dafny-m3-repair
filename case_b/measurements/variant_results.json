@@ -1,0 +1,68 @@
+{
+  "dafny_executable": "/private/tmp/dafny-4.11.0/dafny/dafny",
+  "dafny_version": "4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2",
+  "dafny_version_expected": "4.11.0",
+  "dafny_version_match": true,
+  "outcome_counts": {
+    "FRONTEND_ERROR": 0,
+    "TIMEOUT": 0,
+    "TOOL_ERROR": 0,
+    "VERIFICATION_FAILED": 3,
+    "VERIFIED": 5
+  },
+  "results": [
+    {
+      "outcome": "VERIFICATION_FAILED",
+      "raw_result": "case_b/measurements/raw/case_b_000.result.json",
+      "raw_result_sha256": "9f41140eb8e0aacfe9cc6f9e9545e10a26758c1942e725d24fccd744b448876e",
+      "variant_id": "case_b_000"
+    },
+    {
+      "outcome": "VERIFIED",
+      "raw_result": "case_b/measurements/raw/case_b_100.result.json",
+      "raw_result_sha256": "b2fb83f94a147cf33e38f3717b49caf68614e7af22a28b2815353d3ebf383b0a",
+      "variant_id": "case_b_100"
+    },
+    {
+      "outcome": "VERIFICATION_FAILED",
+      "raw_result": "case_b/measurements/raw/case_b_010.result.json",
+      "raw_result_sha256": "4a90f9aad23202b7a1464cf2ea23cb236d4a20764847286fa5ad7089b99c00f2",
+      "variant_id": "case_b_010"
+    },
+    {
+      "outcome": "VERIFICATION_FAILED",
+      "raw_result": "case_b/measurements/raw/case_b_001.result.json",
+      "raw_result_sha256": "b37744d39aac6ffa13c5f4d215c781493712b188ced8fbdadb26fdabff06866b",
+      "variant_id": "case_b_001"
+    },
+    {
+      "outcome": "VERIFIED",
+      "raw_result": "case_b/measurements/raw/case_b_110.result.json",
+      "raw_result_sha256": "5aab0bf4ce88cb084b7d70c9f98f850eda501b6d7474566a633ddc2bd5f1c703",
+      "variant_id": "case_b_110"
+    },
+    {
+      "outcome": "VERIFIED",
+      "raw_result": "case_b/measurements/raw/case_b_101.result.json",
+      "raw_result_sha256": "90f2fd09b89129f6122afa295e072e5cb8b26ce49568ea6feb945d40d61ea4dc",
+      "variant_id": "case_b_101"
+    },
+    {
+      "outcome": "VERIFIED",
+      "raw_result": "case_b/measurements/raw/case_b_011.result.json",
+      "raw_result_sha256": "d171e1cd0797d35ae5dd819ae7bfaf4d4a3323f9003ec582d08e09a556642a08",
+      "variant_id": "case_b_011"
+    },
+    {
+      "outcome": "VERIFIED",
+      "raw_result": "case_b/measurements/raw/case_b_111.result.json",
+      "raw_result_sha256": "8b6b683a198034543f26500a0e17b3d06c3c95dba74a845b80f86bc21293e1ae",
+      "variant_id": "case_b_111"
+    }
+  ],
+  "schema_version": "case-b-measurement-index-v1",
+  "variant_count_expected": 8,
+  "variant_count_measured": 8,
+  "variant_manifest": "case_b/generated/case_b_variants.json",
+  "variant_manifest_sha256": "fc943336a0f5cf143a7ba7c080ec9ba6fedbf0cb3effc617eaa1fe7eed56f5bf"
+}

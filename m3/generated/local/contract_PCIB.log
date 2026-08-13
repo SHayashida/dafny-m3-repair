@@ -1,0 +1,17 @@
+m3/generated/local/contract_PCIB.dfy(24,14): Error: a precondition for this call could not be proved
+   |
+24 | { r := Percent(delta, span); }
+   |               ^
+
+m3/generated/local/contract_PCIB.dfy(13,24): Related location: this is the precondition that could not be proved
+   |
+13 |   requires PositiveWhole(whole)
+   |                         ^
+
+m3/generated/local/contract_PCIB.dfy(10,36): Related location: this proposition could not be proved
+   |
+10 | predicate PositiveWhole(w: int) { w > 0 }
+   |                                     ^
+
+
+Dafny program verifier finished with 4 verified, 1 error

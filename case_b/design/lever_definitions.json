@@ -1,0 +1,39 @@
+{
+  "schema_version": "case-b-levers-v1",
+  "retained_deleted_convention": {
+    "deleted_levers": "R",
+    "retained_levers": "Lambda \\ R"
+  },
+  "repair_levers": [
+    {
+      "lever_id": "L1_REQUIRE_NONNEGATIVE",
+      "edit_operation": "insert_requires",
+      "edit_payload": "x >= 0",
+      "semantic_rationale": "A public input-domain repair that directly makes the nonnegative postcondition provable."
+    },
+    {
+      "lever_id": "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "edit_operation": "insert_requires",
+      "edit_payload": "x >= -1",
+      "semantic_rationale": "A weaker public input-domain edit that is insufficient alone but can support a body repair."
+    },
+    {
+      "lever_id": "L3_SHIFT_BODY_BY_ONE",
+      "edit_operation": "replace_assignment",
+      "edit_payload": "y := x + 1;",
+      "semantic_rationale": "An implementation edit that shifts the result and is insufficient for unrestricted integer inputs."
+    }
+  ],
+  "groups": [
+    {
+      "group_id": "INPUT_CONTRACT",
+      "semantic_rationale": "Both assigned levers edit the declared input domain of the same public method."
+    },
+    {
+      "group_id": "IMPLEMENTATION_BODY",
+      "semantic_rationale": "The assigned lever changes the executable assignment in the method body."
+    }
+  ],
+  "preregistered_hypothesis": "g(Min(F)) != Min(g(F))",
+  "design_rationale": "The two contract edits and the body edit are independently meaningful Dafny repairs. The grouping follows source construct ownership, not verifier outcomes."
+}

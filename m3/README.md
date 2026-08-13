@@ -1,126 +1,308 @@
-# M3 Contract Repair Research: Dafny Specification Change Study
+# M3 reportability-contract finite audit (Dafny Percent/Trend example)
 
-## Research Problem
+This artifact aligns the soundness/exactness terminology of this repository with
+the **Sen24 M3 reportability-contract** definitions, and adds an executable,
+machine-decided finite audit over a small Dafny example. Every verification
+outcome is **measured** with Dafny 4.11.0; nothing is hardcoded.
 
-When Dafny verification fails due to contract mismatch between `caller` and `callee`, multiple technically valid repairs exist:
-- **C1**: Strengthen caller's precondition (narrower input)
-- **C2**: Weaken callee's precondition (broader input)
-- **C3**: Change implementation (preserve contracts)
+> Scope-honest claims are stated up front:
+>
+> * `CandidateAttributeValidity` is **not** M3 `GroupSoundness`.
+> * `C1` is a **local** repair but **not** a closed-world repair.
+> * `A-only` and `B-only` are **site-restricted generation policies, not
+>   `RepairAtomicity`**.
+> * The reference predicate `SatPsi` is **artifact-defined**.
+> * **No Lean theorem is proved** in this repository.
+> * The finite audit **does not establish a general result** about Dafny or
+>   formal model repair.
+> * **Exactness** means pointwise equality between `GroupedRepair` and
+>   `ContractRepair` under the declared contract.
 
-Each repair succeeds verification but implies different responsibility assignments, API compatibility, and specification semantics. The research hypothesis is:
+---
 
-**Pre-selecting a fixed repair scope (A-only or B-only) loses alternative repairs and may incur over-repair or re-solve cycles. Holding low-level candidates and post-auditing them against declared responsibilities enables reuse across multiple specification judgments.**
+## 1. Research question
 
-## Minimum Example
+Given one Dafny verification failure caused by a caller/callee contract
+mismatch, several low-level repairs make the verifier succeed. They imply
+**different** upper-level specification changes (responsibility, admissible
+input, API compatibility). The question is which **reportability** relationship
+holds between low-level repairs and contract-level repairs, and under which
+declared assumptions the M3-C exactness characterization applies.
 
-File: `base.dfy`
+## 2. Dafny failure and C1/C2/C3 candidates
+
+Base example (`base.dfy`): `Percent` has an over-restrictive precondition
+(`whole > 0`) even though its body is total for `whole != 0`; `Trend` calls it
+with only `span != 0` guaranteed.
 
 ```dafny
 method Percent(part: int, whole: int) returns (r: int)
-  requires whole > 0              // Over-restrictive: implementation works for whole != 0
-  ensures r == part * 100 / whole
+  requires whole > 0
+  ensures  r == part * 100 / whole
 { r := part * 100 / whole; }
 
 method Trend(delta: int, span: int) returns (r: int)
-  requires span != 0              // Caller only guarantees non-zero
-{ r := Percent(delta, span); }    // FAIL: Trend cannot prove whole > 0
+  requires span != 0
+{ r := Percent(delta, span); }     // FAIL: cannot prove whole > 0
 ```
 
-**Verification result**: base.dfy fails at `Trend (correctness)` — precondition `whole > 0` not provable from `span != 0`.
+Three candidate edits:
 
-## Three Repair Candidates
+| id | edit | public contract changed | implementation changed |
+|---|---|---|---|
+| C1 | `Trend.requires span != 0 => span > 0` | yes (caller) | no |
+| C2 | `Percent.requires whole > 0 => whole != 0` | yes (callee) | no |
+| C3 | `Trend` direct call => guarded body | no | yes |
 
-| File | Repair | Contracts Changed | Verification | Existing Clients | Semantics |
-|---|---|---|---|---|---|
-| `C1_caller_strengthen.dfy` | Strengthen `Trend.requires: span != 0 → span > 0` | Caller narrowed input | ✅ (but `TrendUserBROKEN` fails) | Obligation propagates upstream | Caller responsibility ↑ |
-| `C2_callee_weaken.dfy` | Weaken `Percent.requires: whole > 0 → whole != 0` | Callee broadened input | ✅ (all 5 tasks pass) | Preserved (Ratio still passes) | Callee responsibility ↑ / backward compat |
-| `C3_impl_change.dfy` | Guard `Trend.body` for `span < 0` | Implementation only | ✅ (all 5 tasks pass) | Unchanged contracts | Silent behavior change (`span < 0` → 0) |
+The hand-written `base.dfy`, `C1_caller_strengthen.dfy`, `C2_callee_weaken.dfy`,
+`C3_impl_change.dfy` and their `.csv` logs are retained as primary evidence.
 
-## Verification Logs
+## 3. Validation scopes
 
-All logs are in `.csv` format (Dafny `--log-format csv`), showing per-method results:
+Verification success is **scope-relative**. Two scopes are evaluated over the
+same lattice:
 
+* **Local scope**: `Percent`, `Ratio`, `Trend`.
+* **Closed-world scope**: adds `TrendUserOK` (guarantees `s > 0`) and
+  `TrendUserNonzero` (guarantees only `s != 0`).
+
+Corrected claim (replacing the earlier, wrong "C1/C2/C3 all succeed"):
+
+```text
+C1 is locally validated for the repaired caller-callee pair, but fails
+closed-world compatibility validation when the existing nonzero-only upstream
+client (TrendUserNonzero) is included.
+
+C2 and C3 pass both the local target scope and the declared closed-world
+client scope.
 ```
-base.csv:          base state (1 failure)
-C1_caller_strengthen.csv:   Trend passes; TrendUserBROKEN fails (chain propagation)
-C2_callee_weaken.csv:       All 5 pass; backward compatible
-C3_impl_change.csv:         All 5 pass; implementation sealed
+
+Per-candidate fields are recorded in `results/candidate_attribute_validity.json`:
+`validated_local`, `validated_closed_world`, `existing_clients_preserved`,
+`public_contract_changed`, `implementation_changed`, `adopted`,
+`rejection_reason`.
+
+## 4. Application-side candidate attribute audit (NOT GroupSoundness)
+
+The predicate previously written as "if a low-level repair verifies, `rho(e)`
+satisfies `Q`" is **renamed** to `CandidateAttributeValidity` (a.k.a.
+`DecisionAuditPredicate` / `ApplicationSideAudit`). It records the factual
+attributes of each candidate (input-domain change, public-contract change,
+implementation change, existing-client preservation, responsibility location)
+and separates `validated` from `adopted`. It is a decision-support audit and is
+**deliberately kept in a separate section and file** from M3 `GroupSoundness`.
+
+Measured (`results/candidate_attribute_validity.json`):
+
+| id | validated_local | validated_closed_world | existing_clients_preserved | rejection_reason |
+|---|---|---|---|---|
+| C1 | true | **false** | false | breaks nonzero-only upstream client (closed world) |
+| C2 | true | true | true | — |
+| C3 | true | true | true | — |
+
+## 5. M3 reportability contract
+
+Retained-set convention (feasibility indexed by the **kept** set):
+
+Implementation levers `LambdaI` (a lever = "keep the original commitment"):
+
+```text
+KEEP_TREND_NONZERO_DOMAIN          delete -> C1
+KEEP_PERCENT_POSITIVE_PRECONDITION delete -> C2
+KEEP_DIRECT_PERCENT_CALL           delete -> C3
 ```
 
-## M3 Framework Elements (in this example)
+Contract atoms `I` and block map `beta` (`model/reportability_contract.json`):
 
-**Implementation Levers** (low-level edits):
-- `Percent.requires` token change from `>` to `!=`
-- `Trend.requires` token change from `!=` to `>`
-- `Trend.body` branch addition
+```text
+I = { ORIGINAL_PUBLIC_CONTRACT_SURFACE (PC), ORIGINAL_IMPLEMENTATION_BEHAVIOR (IB) }
+beta(PC) = { KEEP_TREND_NONZERO_DOMAIN, KEEP_PERCENT_POSITIVE_PRECONDITION }
+beta(IB) = { KEEP_DIRECT_PERCENT_CALL }
+```
 
-**Contract Report Items** (high-level):
-- callee admissible input expanded / responsibility increased
-- caller admissible input narrowed / responsibility increased
-- implementation behavior changed / public contracts preserved
-- backward compatibility maintained / broken
+`beta` is pairwise disjoint and nonempty. `|beta(PC)| = 2`, so **RepairAtomicity
+(`forall a in I, |beta(a)| = 1`) is false** — this is an **M3-B (non-atomic)**
+case. Site-restricted generation (section 12) is a separate policy, **not**
+RepairAtomicity.
 
-**Raw Repairs**: {C1, C2, C3} — three mutually non-included minimal edits
+Derived operators: `betaSet(T) = union of beta(a) for a in T`,
+`groupTouchAny(R) = { a in I | R ∩ beta(a) ≠ ∅ }`.
 
-**Reporting Contract ρ**: Maps each repair to its responsibility implications (e.g., C1 → caller resp ↑, C2 → callee resp ↑)
+## 6. Authoritative definitions (implemented in `scripts/m3lib.py`)
 
-**Declared Predicates Q**: verifier success, no unwanted input shrinkage, existing clients preserved, minimal edit, responsibility not moved to forbidden party
+```text
+RawFeasible_scope(R)      iff R ⊆ LambdaI and SatPhi_scope(LambdaI \ R)
+RawRepair_scope(R)        iff RawFeasible(R) and no proper subset is RawFeasible
+ContractFeasible_scope(G) iff G ⊆ I and SatPsi_scope(I \ G)
+ContractRepair_scope(G)   iff ContractFeasible(G) and no proper subset is ContractFeasible
+IsRawGroup_scope(G)       iff exists R, RawRepair(R) and groupTouchAny(R) = G
+GroupedRepair_scope(G)    iff IsRawGroup(G) and G inclusion-minimal in the raw grouped image
+ResidualFaithfulness_scope   iff forall T ⊆ I, SatPhi(betaSet(T)) iff SatPsi(T)
+GroupSoundness_scope         iff forall R ⊆ LambdaI, SatPhi(LambdaI\R) => SatPsi(I\groupTouchAny(R))
+GroupedCorrectness_scope     iff forall G ⊆ I, GroupedRepair(G) iff ContractRepair(G)
+PsiDeletionMonotonicity_scope iff forall T' ⊆ T ⊆ I, SatPsi(T) => SatPsi(T')
+```
 
-**Soundness**: If low-level repair e succeeds verification, then ρ(e) satisfies all declared Q predicates.
+Notes:
+* `GroupSoundness` checks **all** feasible implementation deletions, not only raw
+  repairs. Checking raw repairs only is the weaker **raw-minimal audit**; it can
+  be promoted to unrestricted `GroupSoundness` only when `PsiDeletionMonotonicity`
+  holds (M3 `audit_cost_collapse`).
+* `GroupedRepair` recomputes inclusion-minimality over the grouped image; it is
+  not merely `groupTouchAny(RawRepair)` deduplicated.
+* `SatPsi` is the measured outcome of a block-aligned artifact produced by a
+  **separate generator** (`scripts/contract_realization.py`), authored directly
+  from contract-atom meaning with different surface syntax (named contract
+  predicates), **not** by feeding `betaSet(T)` into the implementation renderer
+  and **not** a code alias of `SatPhi`. The implementation and contract
+  residuals therefore have **different source hashes** (recorded per `T` under
+  `cross_realization` in each audit JSON), so `ResidualFaithfulness` is a
+  **cross-realization conformance check** between two independent encodings, not
+  a construction tautology. It remains a conformance audit between two encodings
+  intended to correspond — **not** an independent semantic theorem. A realization
+  defect that changes the measured feasibility outcome on one side but not the
+  corresponding outcome on the other side is detected as a `ResidualFaithfulness`
+  failure; correlated defects (the same conceptual error on both sides) and
+  defects that preserve all measured Boolean outcomes may remain undetected.
+* The prior definition "low-level repairs under `rho` equal repairs under `Q`" is
+  **removed**; exactness is `GroupedRepair(G) iff ContractRepair(G)`.
 
-**Exactness** (future work): Low-level minimal repairs under ρ = contract-level minimal repairs under Q (over-under correspondence, if any).
+## 7. Local-scope finite audit (measured)
 
-## Method Comparison: A-only vs B-only vs C post-audit
+`results/reportability_audit_local.json`, `results/summary.md`:
 
-| Method | Exploration Set | C1 Found | C2 Found | C3 Found | Chain Failure | Re-solve |
-|---|---|---|---|---|---|---|
-| **A (caller-only)** | {caller.requires} | ✅ | ✗ (excluded) | ✗ (excluded) | Yes (1 case) | +1 |
-| **B (callee-only)** | {callee.requires} | ✗ (excluded) | ✅ | ✗ (excluded) | No | 0 |
-| **C (post-audit)** | {caller.*, callee.*, body} | ✅ | ✅ | ✅ | Detected | 0 |
+```text
+RawRepair       = { {KEEP_TREND_NONZERO_DOMAIN}, {KEEP_PERCENT_POSITIVE_PRECONDITION}, {KEEP_DIRECT_PERCENT_CALL} }
+GroupedRepair   = { {PC}, {IB} }
+ContractRepair  = { {PC}, {IB} }
+ResidualFaithfulness    = PASS
+GroupSoundness          = PASS
+PsiDeletionMonotonicity = PASS
+GroupedCorrectness      = PASS
+M3-C characterization applicable = YES
+```
 
-## Declarations (§13)
+## 8. Closed-world finite audit (measured)
 
-### Verified This Session
-- ✅ Base failure + C1/C2/C3 all succeed
-- ✅ Different responsibility implications for each repair
-- ✅ Different input-set changes (C1 narrows, C2 widens)
-- ✅ Different compatibility (C1 breaks upstream; C2 preserves)
-- ✅ Pre-fixing to A loses C2; to B loses C1
+`results/reportability_audit_closed.json`:
 
-### Not Yet Verified (for future work)
-- ⏳ Formal soundness/exactness under ρ and Q
-- ⏳ Multiple case studies
-- ⏳ Frequency in real Dafny codebases
-- ⏳ Automatic repair candidate generation
+```text
+RawRepair       = { {KEEP_PERCENT_POSITIVE_PRECONDITION}, {KEEP_DIRECT_PERCENT_CALL} }   (C1 excluded)
+GroupedRepair   = { {PC}, {IB} }
+ContractRepair  = { {IB} }
+ResidualFaithfulness    = PASS
+GroupSoundness          = FAIL
+PsiDeletionMonotonicity = FAIL
+GroupedCorrectness      = FAIL
+M3-C characterization applicable = NO
+```
 
-### Cannot Claim (§11)
-- ❌ Best repair was auto-decided
-- ❌ Existing Dafny tools are wrong
-- ❌ Post-audit always beats pre-fixing
-- ❌ General claim beyond this case
+`C1` is **not** a closed-world `RawRepair`: deleting only
+`KEEP_TREND_NONZERO_DOMAIN` yields retained set `{P, D}`, whose closed-world
+artifact fails because `TrendUserNonzero` cannot prove `span > 0`.
 
-## Artifacts
+## 9. GroupSoundness counterexample
 
-- `base.dfy` — original failing spec (v0)
-- `C1_caller_strengthen.dfy` — repair candidate 1
-- `C2_callee_weaken.dfy` — repair candidate 2
-- `C3_impl_change.dfy` — repair candidate 3
-- `*.csv` — Dafny verifier output (per-method results)
-- `README.md` — this file
+Measured counterexample `R = { KEEP_PERCENT_POSITIVE_PRECONDITION }` (apply C2
+only):
 
-## Reproduction
+```text
+SatPhi_closed(LambdaI \ R) = SatPhi_closed({T, D}) = true
+groupTouchAny(R) = { ORIGINAL_PUBLIC_CONTRACT_SURFACE }
+SatPsi_closed(I \ groupTouchAny(R)) = SatPsi_closed({IB}) = false
+=> true implies false  => GroupSoundness FAILS
+```
+
+Deleting the whole non-atomic block `PC` couples C1 and C2; C1 breaks the
+nonzero-only client, so the block-aligned reference residual is infeasible even
+though the C2-only implementation residual is feasible. This is a **non-atomic
+block leak**, not a faithfulness failure (`ResidualFaithfulness` still PASSES).
+
+## 10. Grouped correctness / exactness result
+
+Local: `GroupedRepair = ContractRepair = {{PC},{IB}}` → exactness holds.
+
+Closed-world: `GroupedRepair = {{PC},{IB}}` but `ContractRepair = {{IB}}`.
+Counterexample `G = {PC}`: `GroupedRepair(G)=true`, `ContractRepair(G)=false` →
+exactness **fails**.
+
+## 11. M3-C applicability boundary
+
+M3-C exactness characterization is reported only when `BlocksDisjoint`,
+`ResidualFaithfulness`, and `PsiDeletionMonotonicity` all hold.
+
+* Local: all three hold → **applicable**; `GroupSoundness` and
+  `GroupedCorrectness` are both PASS, **consistent with** the M3-C
+  characterization under the declared artifact-defined contract and verified
+  finite assumptions.
+* Closed-world: `PsiDeletionMonotonicity` fails → **NOT APPLICABLE**.
+  `GroupSoundness` and `GroupedCorrectness` both FAIL, but this is recorded as
+  two independent measured facts, **not** as an empirical proof of the
+  necessary-and-sufficient condition.
+
+## 12. Site-restricted generation experiment
+
+Three candidate-generation policies (renamed from the earlier, incorrect
+"atomic" naming):
+
+```text
+A: caller-site-restricted candidate generation             -> finds C1 only
+B: callee-contract-site-restricted candidate generation    -> finds C2 only
+C: raw-candidate retention with post-hoc audit             -> retains C1, C2, C3
+```
+
+These are **generation-site restrictions, not `RepairAtomicity`**. In the local
+scope, A loses C2 and B loses C1; C retains all candidates and audits them.
+
+## 13. Claim boundary
+
+Allowed: multiple technical repairs exist for one failure; they differ in
+caller/callee responsibility, admissible input, and compatibility;
+site-restriction excludes alternatives; post-hoc audit reuses one candidate set
+across contract judgments; soundness/exactness are checked **relative to the
+declared artifact-defined contract**.
+
+Not claimed: best repair auto-decided; existing Dafny repair research is wrong;
+post-hoc audit always beats site restriction; generalization to all
+specification-model repair; frequency in practice from one case; verifier
+success equals specification-intent correctness; any Lean/semantic theorem.
+
+## 14. Reproduction
 
 ```bash
-dafny verify base.dfy --log-format "csv;LogFileName=base.csv"
-dafny verify C1_caller_strengthen.dfy --log-format "csv;LogFileName=C1_caller_strengthen.csv"
-dafny verify C2_callee_weaken.dfy --log-format "csv;LogFileName=C2_callee_weaken.csv"
-dafny verify C3_impl_change.dfy --log-format "csv;LogFileName=C3_impl_change.csv"
+python scripts/reproduce.py                 # version -> generate -> verify -> audit -> schema -> tests -> manifest
+python -m pytest -q
+git diff --check
 ```
 
-**Dafny version**: 4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2 (official release)
+Override the Dafny binary with `--dafny PATH` or `DAFNY_EXE`. A version other
+than 4.11.0 is recorded as a mismatch in metadata and **not** silently treated
+as identical. Pinned version:
+`4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2`.
 
-## References
+## 15. Artifact manifest
 
-- Hypothesis based on M3 contract repair framework (declared predicates, reporting contracts, soundness, exactness)
-- Complements earlier `Divide` experiment (fan-out scaling, re-solve counts)
-- Follows §12 priority: hand-constructed case before automated generation
+```text
+m3/
+  README.md
+  base.dfy  C1_caller_strengthen.dfy  C2_callee_weaken.dfy  C3_impl_change.dfy   (+ .csv)
+  model/    reportability_contract.json   contract_reference.json
+  templates/program_template.dfy
+  generated/local/   8 impl + 4 contract variants (.dfy, .log)
+  generated/closed/  8 impl + 4 contract variants (.dfy, .log)
+  results/  lattice_measurements.json
+            implementation_residuals_{local,closed}.json
+            contract_residuals_{local,closed}.json
+            reportability_audit_{local,closed}.json
+            candidate_attribute_validity.json
+            summary.md   manifest.sha256.json
+scripts/  m3lib.py  generate_dafny_variants.py (implementation-lever realization)
+          contract_realization.py (independent reference-contract realization)
+          run_dafny_lattice.py  audit_reportability.py  reproduce.py
+tests/    test_reportability_definitions.py
+          test_expected_local_boundary.py  test_expected_closed_boundary.py
+          test_cross_realization_independence.py
+```
+
+`m3/results/manifest.sha256.json` lists SHA-256 of every tracked artifact for
+integrity checking.

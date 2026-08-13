@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/private/tmp/dafny-4.11.0/dafny/dafny",
+    "verify",
+    "/private/tmp/dafny-m3-repair/case_b/generated/variants/case_b_001.dfy"
+  ],
+  "dafny_executable": "/private/tmp/dafny-4.11.0/dafny/dafny",
+  "dafny_version": "4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2",
+  "dafny_version_expected": "4.11.0",
+  "dafny_version_match": true,
+  "deleted_levers": [
+    "L3_SHIFT_BODY_BY_ONE"
+  ],
+  "design_lock_sha256": "e057e7acd53c01877f0970de73a380a984a8802824f3578b92c96f40b9023c6f",
+  "elapsed_seconds": 1.017942,
+  "exit_code": 4,
+  "group_mapping_sha256": "910b679cdc4341d7bfe6ef9deb1f179bbaf0aa2adc90ed49e993d90d08b423b1",
+  "outcome": "VERIFICATION_FAILED",
+  "retained_levers": [
+    "L1_REQUIRE_NONNEGATIVE",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE"
+  ],
+  "schema_version": "case-b-raw-measurement-v1",
+  "source": "case_b/generated/variants/case_b_001.dfy",
+  "source_sha256": "7dd3f8b4e0f97822ae668299e2cd4104604ac69c3ca54674d7f10158267b56f3",
+  "stderr": "",
+  "stdout": "case_b/generated/variants/case_b_001.dfy(12,0): Error: a postcondition could not be proved on this return path\n   |\n12 | {\n   | ^\n\ncase_b/generated/variants/case_b_001.dfy(11,12): Related location: this is the postcondition that could not be proved\n   |\n11 |   ensures y >= 0\n   |             ^^\n\n\nDafny program verifier finished with 0 verified, 1 error\n",
+  "variant_id": "case_b_001"
+}

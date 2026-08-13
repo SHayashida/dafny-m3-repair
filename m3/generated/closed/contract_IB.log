@@ -1,0 +1,17 @@
+m3/generated/closed/contract_IB.dfy(32,12): Error: a precondition for this call could not be proved
+   |
+32 | { r := Trend(d, s); }
+   |             ^
+
+m3/generated/closed/contract_IB.dfy(23,23): Related location: this is the precondition that could not be proved
+   |
+23 |   requires PositiveSpan(span)
+   |                        ^
+
+m3/generated/closed/contract_IB.dfy(9,36): Related location: this proposition could not be proved
+  |
+9 | predicate PositiveSpan(s: int)  { s > 0 }
+  |                                     ^
+
+
+Dafny program verifier finished with 6 verified, 1 error

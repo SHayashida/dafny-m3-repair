@@ -1,0 +1,12 @@
+m3/generated/closed/impl_P.dfy(28,12): Error: a precondition for this call could not be proved
+   |
+28 | { r := Trend(d, s); }
+   |             ^
+
+m3/generated/closed/impl_P.dfy(16,16): Related location: this is the precondition that could not be proved
+   |
+16 |   requires span > 0
+   |                 ^
+
+
+Dafny program verifier finished with 6 verified, 1 error

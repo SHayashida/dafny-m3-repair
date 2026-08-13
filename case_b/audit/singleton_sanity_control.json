@@ -1,0 +1,28 @@
+{
+  "control_type": "implementation sanity control / order-isomorphism control",
+  "grouped_raw_minimal_image": [
+    [
+      "SINGLETON::L1_REQUIRE_NONNEGATIVE"
+    ],
+    [
+      "SINGLETON::L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "SINGLETON::L3_SHIFT_BODY_BY_ONE"
+    ]
+  ],
+  "minimal_grouped_full_image": [
+    [
+      "SINGLETON::L1_REQUIRE_NONNEGATIVE"
+    ],
+    [
+      "SINGLETON::L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "SINGLETON::L3_SHIFT_BODY_BY_ONE"
+    ]
+  ],
+  "passed": true,
+  "schema_version": "case-b-singleton-control-v1",
+  "singleton_mapping": {
+    "L1_REQUIRE_NONNEGATIVE": "SINGLETON::L1_REQUIRE_NONNEGATIVE",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE": "SINGLETON::L2_REQUIRE_AT_LEAST_MINUS_ONE",
+    "L3_SHIFT_BODY_BY_ONE": "SINGLETON::L3_SHIFT_BODY_BY_ONE"
+  }
+}

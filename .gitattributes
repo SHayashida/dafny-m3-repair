@@ -1,0 +1,6 @@
+# Normalize all text to LF so generated-artifact hashes in
+# m3/results/manifest.sha256.json are stable across platforms/clones.
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.zip binary

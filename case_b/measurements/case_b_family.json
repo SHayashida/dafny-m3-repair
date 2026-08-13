@@ -1,0 +1,40 @@
+{
+  "lever_universe": [
+    "L1_REQUIRE_NONNEGATIVE",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+    "L3_SHIFT_BODY_BY_ONE"
+  ],
+  "measurement_complete": true,
+  "outcome_counts": {
+    "FRONTEND_ERROR": 0,
+    "TIMEOUT": 0,
+    "TOOL_ERROR": 0,
+    "VERIFICATION_FAILED": 3,
+    "VERIFIED": 5
+  },
+  "schema_version": "case-b-family-v1",
+  "variant_count_expected": 8,
+  "variant_count_measured": 8,
+  "verified_deletion_family": [
+    [
+      "L1_REQUIRE_NONNEGATIVE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ],
+    [
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ]
+  ]
+}

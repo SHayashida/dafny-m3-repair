@@ -1,0 +1,118 @@
+{
+  "scope": "closed_world",
+  "kind": "implementation_residuals",
+  "rows": [
+    {
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL"
+      ],
+      "applied_edits": [
+        "C1",
+        "C2"
+      ],
+      "source": "m3/generated/closed/impl_D.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_D.dfy",
+      "verifier_passed": false,
+      "source_sha256": "36705950d40b5b62761a36b93b132b2899bcdbd5b6170066c6479fc615cf2abd",
+      "log_sha256": "587467befdb4e3826cc4738c92c44659774eb78e3f955a12ea7e932b9fc153c3"
+    },
+    {
+      "retained_levers": [
+        "KEEP_PERCENT_POSITIVE_PRECONDITION"
+      ],
+      "applied_edits": [
+        "C1",
+        "C3"
+      ],
+      "source": "m3/generated/closed/impl_P.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_P.dfy",
+      "verifier_passed": false,
+      "source_sha256": "5cb07598a757c4485d8df13115d60c523b4129c5afae2e4d484f8c3913db3523",
+      "log_sha256": "b4fb5508cd9a86fef9805a273b22d4bf3c086d20ee39f2fe394a2a152a81f5ca"
+    },
+    {
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL",
+        "KEEP_PERCENT_POSITIVE_PRECONDITION"
+      ],
+      "applied_edits": [
+        "C1"
+      ],
+      "source": "m3/generated/closed/impl_PD.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_PD.dfy",
+      "verifier_passed": false,
+      "source_sha256": "e3be8b146d889acb3fbfa49e2bae4b6b1993c03d91e56614e2f32fb26217ab99",
+      "log_sha256": "38e273b9484e7c42365558b1a04a00b7d12e00c7fdd5670fa7ffd2333ed5cf6d"
+    },
+    {
+      "retained_levers": [
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "applied_edits": [
+        "C2",
+        "C3"
+      ],
+      "source": "m3/generated/closed/impl_T.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_T.dfy",
+      "verifier_passed": true,
+      "source_sha256": "a70f1241f8e515c4985e6b020653bf08da954ae8891a6ac95040a024fa039b7b",
+      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
+    },
+    {
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL",
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "applied_edits": [
+        "C2"
+      ],
+      "source": "m3/generated/closed/impl_TD.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_TD.dfy",
+      "verifier_passed": true,
+      "source_sha256": "232cacfebc139aef26ca12c2a4707fb4dff23b5e61f4ea8cbf7c9fa6456dcc22",
+      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
+    },
+    {
+      "retained_levers": [
+        "KEEP_PERCENT_POSITIVE_PRECONDITION",
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "applied_edits": [
+        "C3"
+      ],
+      "source": "m3/generated/closed/impl_TP.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_TP.dfy",
+      "verifier_passed": true,
+      "source_sha256": "816c3fe501368ce93d488512845b9a45b179440838d8696e9f5ccda2b69ac0e3",
+      "log_sha256": "28820ede5d359d3b66117f84a8772671997388a3721c3c9c3ca5fe4c64e9643f"
+    },
+    {
+      "retained_levers": [
+        "KEEP_DIRECT_PERCENT_CALL",
+        "KEEP_PERCENT_POSITIVE_PRECONDITION",
+        "KEEP_TREND_NONZERO_DOMAIN"
+      ],
+      "applied_edits": [
+        "base"
+      ],
+      "source": "m3/generated/closed/impl_TPD.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_TPD.dfy",
+      "verifier_passed": false,
+      "source_sha256": "24751cc6d1a08fd9455d65078b56ce36549ab38a1fd905291e25b465816474a2",
+      "log_sha256": "59dfe7e19d4087a55940e69f71518edc4b5314cf21f767b3ecb0689a0876caf8"
+    },
+    {
+      "retained_levers": [],
+      "applied_edits": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "source": "m3/generated/closed/impl_none.dfy",
+      "verifier_command": "dafny verify C:\\Users\\hayas\\Documents\\Fixed-atmic-test\\m3\\generated\\closed\\impl_none.dfy",
+      "verifier_passed": false,
+      "source_sha256": "8684aa9aa2c98815e7c0574964fa0db04cd95d3c35a9cc1ffcdada3861df01ca",
+      "log_sha256": "f5bdccc5f2f19fd6be80781f59126564d325e65d522b304f11392fcdc4c842e0"
+    }
+  ]
+}

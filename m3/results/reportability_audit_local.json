@@ -1,0 +1,442 @@
+{
+  "schema_version": "m3-audit-1.0",
+  "dafny_version": "4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2",
+  "dafny_version_match": true,
+  "scope": "local",
+  "active_contract_atoms": [
+    "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+    "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+  ],
+  "active_implementation_levers": [
+    "KEEP_TREND_NONZERO_DOMAIN",
+    "KEEP_PERCENT_POSITIVE_PRECONDITION",
+    "KEEP_DIRECT_PERCENT_CALL"
+  ],
+  "beta": {
+    "PC": [
+      "KEEP_TREND_NONZERO_DOMAIN",
+      "KEEP_PERCENT_POSITIVE_PRECONDITION"
+    ],
+    "IB": [
+      "KEEP_DIRECT_PERCENT_CALL"
+    ]
+  },
+  "blocks_disjoint": true,
+  "blocks_nonempty": true,
+  "repair_atomicity": false,
+  "sat_phi": {
+    "none": true,
+    "P": true,
+    "D": true,
+    "T": true,
+    "PD": true,
+    "TP": true,
+    "TD": true,
+    "TPD": false
+  },
+  "sat_psi": {
+    "none": true,
+    "PC": true,
+    "IB": true,
+    "PCIB": false
+  },
+  "raw_repairs": [
+    [
+      "KEEP_PERCENT_POSITIVE_PRECONDITION"
+    ],
+    [
+      "KEEP_DIRECT_PERCENT_CALL"
+    ],
+    [
+      "KEEP_TREND_NONZERO_DOMAIN"
+    ]
+  ],
+  "raw_grouped_image": [
+    [
+      "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+    ],
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ]
+  ],
+  "grouped_repairs": [
+    [
+      "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+    ],
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ]
+  ],
+  "contract_repairs": [
+    [
+      "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+    ],
+    [
+      "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+    ]
+  ],
+  "cross_realization": {
+    "independent_source_realization": true,
+    "note": "Implementation and reference-contract residuals are produced by different generators with different surface syntax; identical source hashes would indicate a construction tautology.",
+    "rows": [
+      {
+        "retained_atoms": [],
+        "beta_set_levers": [],
+        "impl_betaset_source_sha256": "bc40f5192a84d9aa1027a91d8e62a0ccfe08995984ba02cb041c84260f324045",
+        "contract_source_sha256": "f4879af79488faa096b28dfaf7968cc6507b59393c32d62f560ab994c429425b",
+        "source_hashes_differ": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "impl_betaset_source_sha256": "3eba3054bd2ab6ce69640c33e26276d207fd94d3d02f258ecf4aee9d35d6b18f",
+        "contract_source_sha256": "eb8eef6c7851c75bf4bb98327e531dd6cca0f7869d54ae8535a961c3aeec1ffe",
+        "source_hashes_differ": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "impl_betaset_source_sha256": "b7be58adf15c45df7401c8d1088f02c45d70dd60c3c905f1f2cf3e20620260a4",
+        "contract_source_sha256": "97d09bf62dc5a131976f113f51d85c2db91e9ee5937efce58273e1e443ad60c0",
+        "source_hashes_differ": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "impl_betaset_source_sha256": "9cf8d5337434b6012673c9813b72b96d9068443c80e6ea27d6c06d13decfadc6",
+        "contract_source_sha256": "2119133bc402f5e07af37ce979a314b590c8efb68dbf3d18a5a41a6e4fdabc5f",
+        "source_hashes_differ": true
+      }
+    ]
+  },
+  "residual_faithfulness": {
+    "result": true,
+    "checked_cases": [
+      {
+        "retained_atoms": [],
+        "beta_set_levers": [],
+        "sat_phi_beta_set": true,
+        "sat_psi": true,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_beta_set": true,
+        "sat_psi": true,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_beta_set": true,
+        "sat_psi": true,
+        "consistent": true
+      },
+      {
+        "retained_atoms": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "beta_set_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_beta_set": false,
+        "sat_psi": false,
+        "consistent": true
+      }
+    ],
+    "counterexamples": []
+  },
+  "group_soundness": {
+    "result": true,
+    "checked_cases": [
+      {
+        "deleted_levers": [],
+        "sat_phi_retained": false,
+        "group_touch_any": [],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": false,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_atoms_after_group_delete": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": true,
+        "sound": true
+      },
+      {
+        "deleted_levers": [
+          "KEEP_TREND_NONZERO_DOMAIN",
+          "KEEP_PERCENT_POSITIVE_PRECONDITION",
+          "KEEP_DIRECT_PERCENT_CALL"
+        ],
+        "sat_phi_retained": true,
+        "group_touch_any": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_atoms_after_group_delete": [],
+        "sat_psi_retained": true,
+        "sound": true
+      }
+    ],
+    "counterexamples": []
+  },
+  "psi_deletion_monotonicity": {
+    "result": true,
+    "checked_cases": [
+      {
+        "retained_T": [],
+        "retained_Tprime": [],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": true,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": true,
+        "monotone": true
+      },
+      {
+        "retained_T": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "retained_Tprime": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "sat_psi_T": false,
+        "sat_psi_Tprime": false,
+        "monotone": true
+      }
+    ],
+    "counterexamples": []
+  },
+  "grouped_correctness": {
+    "result": true,
+    "checked_cases": [
+      {
+        "G": [],
+        "grouped_repair": false,
+        "contract_repair": false,
+        "equal": true
+      },
+      {
+        "G": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE"
+        ],
+        "grouped_repair": true,
+        "contract_repair": true,
+        "equal": true
+      },
+      {
+        "G": [
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "grouped_repair": true,
+        "contract_repair": true,
+        "equal": true
+      },
+      {
+        "G": [
+          "ORIGINAL_PUBLIC_CONTRACT_SURFACE",
+          "ORIGINAL_IMPLEMENTATION_BEHAVIOR"
+        ],
+        "grouped_repair": false,
+        "contract_repair": false,
+        "equal": true
+      }
+    ],
+    "counterexamples": []
+  },
+  "m3c_characterization": {
+    "applicable": true,
+    "assumptions": {
+      "blocks_disjoint": true,
+      "residual_faithfulness": true,
+      "psi_deletion_monotonicity": true
+    },
+    "finite_result": true,
+    "note": "This finite artifact is consistent with the M3-C characterization under the declared artifact-defined contract and verified finite assumptions."
+  }
+}
