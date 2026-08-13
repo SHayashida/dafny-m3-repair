@@ -106,9 +106,16 @@ def compute_audit(lock: dict, family_doc: dict) -> tuple[dict, dict]:
         dominators = [candidate for candidate in grouped_full if candidate < group_set]
         if not dominators:
             raise EvidenceError(f"missing domination witness for {sorted(group_set)}")
-        dominated_raw = next(raw for raw in raw_minimal if frozenset(lock["group_mapping"][x] for x in raw) == group_set)
+        raw_order_key = lambda value: (len(value), [universe.index(item) for item in sorted(value, key=universe.index)])
+        dominated_raw = min(
+            (raw for raw in raw_minimal if frozenset(lock["group_mapping"][x] for x in raw) == group_set),
+            key=raw_order_key,
+        )
         dominating_group = min(dominators, key=lambda value: (len(value), sorted(value)))
-        dominating_raw = next(raw for raw in family if frozenset(lock["group_mapping"][x] for x in raw) == dominating_group)
+        dominating_raw = min(
+            (raw for raw in family if frozenset(lock["group_mapping"][x] for x in raw) == dominating_group),
+            key=raw_order_key,
+        )
         witnesses.append({
             "G": sorted(group_set, key=groups.index),
             "H": sorted(dominating_group, key=groups.index),

@@ -1,0 +1,11 @@
+{
+  "design_lock_sha256": "e057e7acd53c01877f0970de73a380a984a8802824f3578b92c96f40b9023c6f",
+  "mapping_independently_parsed": true,
+  "passed": true,
+  "raw_results_reconstructed": 8,
+  "schema_version": "case-b-independent-audit-v1",
+  "singleton_order_isomorphism_passed": true,
+  "stored_family_exact_match": true,
+  "stored_operator_audit_exact_match": true,
+  "structural_invariant_passed": true
+}

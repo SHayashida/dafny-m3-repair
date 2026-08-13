@@ -1,0 +1,93 @@
+{
+  "claim_scope": "this frozen finite Dafny Case B only",
+  "commutes": false,
+  "design_lock_sha256": "e057e7acd53c01877f0970de73a380a984a8802824f3578b92c96f40b9023c6f",
+  "group_mapping": {
+    "L1_REQUIRE_NONNEGATIVE": "INPUT_CONTRACT",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE": "INPUT_CONTRACT",
+    "L3_SHIFT_BODY_BY_ONE": "IMPLEMENTATION_BODY"
+  },
+  "grouped_full_image": [
+    [
+      "INPUT_CONTRACT"
+    ],
+    [
+      "INPUT_CONTRACT",
+      "IMPLEMENTATION_BODY"
+    ]
+  ],
+  "grouped_raw_minimal_image": [
+    [
+      "INPUT_CONTRACT"
+    ],
+    [
+      "INPUT_CONTRACT",
+      "IMPLEMENTATION_BODY"
+    ]
+  ],
+  "lever_universe": [
+    "L1_REQUIRE_NONNEGATIVE",
+    "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+    "L3_SHIFT_BODY_BY_ONE"
+  ],
+  "measurement_complete": true,
+  "minimal_grouped_full_image": [
+    [
+      "INPUT_CONTRACT"
+    ]
+  ],
+  "noncommutativity_witnesses": [
+    {
+      "G": [
+        "INPUT_CONTRACT",
+        "IMPLEMENTATION_BODY"
+      ],
+      "H": [
+        "INPUT_CONTRACT"
+      ],
+      "raw_variant_R_G": [
+        "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+        "L3_SHIFT_BODY_BY_ONE"
+      ],
+      "raw_variant_R_H": [
+        "L1_REQUIRE_NONNEGATIVE"
+      ],
+      "relation": "H is a proper subset of G"
+    }
+  ],
+  "raw_minimal_family": [
+    [
+      "L1_REQUIRE_NONNEGATIVE"
+    ],
+    [
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ]
+  ],
+  "schema_version": "case-b-operator-audit-v1",
+  "singleton_order_isomorphism_passed": true,
+  "structural_invariant_passed": true,
+  "unexpected_reverse_difference": [],
+  "verified_family": [
+    [
+      "L1_REQUIRE_NONNEGATIVE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ],
+    [
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ],
+    [
+      "L1_REQUIRE_NONNEGATIVE",
+      "L2_REQUIRE_AT_LEAST_MINUS_ONE",
+      "L3_SHIFT_BODY_BY_ONE"
+    ]
+  ]
+}

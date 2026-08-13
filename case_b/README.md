@@ -99,6 +99,46 @@ The singleton mapping gives every lever a unique group and is an
 positive control. It must satisfy
 `g_id(Min(F)) = Min(g_id(F))` or the main evidence is rejected.
 
+## Frozen measured result
+
+Dafny `4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2` was invoked once on
+each of the eight generated variants. The complete outcome count is five
+`VERIFIED`, three `VERIFICATION_FAILED`, and zero `FRONTEND_ERROR`, `TIMEOUT`,
+or `TOOL_ERROR`.
+
+Using `L1`, `L2`, and `L3` as abbreviations in the table above, the measured
+families are:
+
+```text
+F = {{L1}, {L1,L2}, {L1,L3}, {L2,L3}, {L1,L2,L3}}
+Min(F) = {{L1}, {L2,L3}}
+g(F) = {{INPUT_CONTRACT}, {INPUT_CONTRACT,IMPLEMENTATION_BODY}}
+g(Min(F)) = {{INPUT_CONTRACT}, {INPUT_CONTRACT,IMPLEMENTATION_BODY}}
+Min(g(F)) = {{INPUT_CONTRACT}}
+```
+
+Thus the operations do not commute, while the mandatory structural inclusion
+and singleton order-isomorphism control both pass:
+
+```text
+Min(g(F)) proper-subset g(Min(F)).
+```
+
+The concrete excess element and domination witness are:
+
+```text
+G = {INPUT_CONTRACT, IMPLEMENTATION_BODY}
+R_G = {L2_REQUIRE_AT_LEAST_MINUS_ONE, L3_SHIFT_BODY_BY_ONE}
+H = {INPUT_CONTRACT}
+R_H = {L1_REQUIRE_NONNEGATIVE}
+H proper-subset G
+```
+
+All eight fault injections were rejected at their intended evidence gates. The
+independent audit reconstructs `F` from the hash-bound raw per-variant result
+files, reparses the canonical source mapping, and exactly matches the complete
+stored family, operator audit, and singleton-control JSON.
+
 ## Reproduction
 
 Use Dafny 4.11.0 (the exact observed version and any mismatch are recorded):
