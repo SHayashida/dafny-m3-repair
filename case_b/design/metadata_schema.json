@@ -1,0 +1,16 @@
+{
+  "schema_version": "case-b-metadata-v1",
+  "line_prefix": "// CASE_B_METADATA ",
+  "required_fields": [
+    "lever_id",
+    "report_group",
+    "source_location",
+    "retained_semantics",
+    "deleted_semantics",
+    "construct_kind"
+  ],
+  "cardinality": "exactly one metadata record per declared repair lever",
+  "unknown_field_policy": "reject",
+  "duplicate_policy": "reject duplicate lever identifiers and conflicting records",
+  "missing_policy": "reject"
+}
