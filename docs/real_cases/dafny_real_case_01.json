@@ -1,0 +1,243 @@
+{
+  "case_id": "DAFNY-REAL-CASE-01",
+  "title": "Seq.Filter frame repair selected under compatibility and API tradeoffs",
+  "repository": "dafny-lang/libraries",
+  "primary_pull_request": 99,
+  "primary_url": "https://github.com/dafny-lang/libraries/pull/99",
+  "related_repository": "dafny-lang/dafny",
+  "related_pull_request": 3609,
+  "related_url": "https://github.com/dafny-lang/dafny/pull/3609",
+  "search_protocol": {
+    "path": "docs/real_cases/real_case_search_protocol.json",
+    "protocol_id": "dafny-real-workflow-search-v1",
+    "sha256": "2ef3b43143a49aab678c100a09083a02579c44489acc81f607390d69d0ad3d7c",
+    "matching_scope": "dafny-libraries",
+    "matching_family": "Q06",
+    "executed_query": "precondition compatibility breaking repo:dafny-lang/libraries",
+    "result_rank": 1,
+    "completed": true
+  },
+  "identification": {
+    "primary_pr_created_at": "2023-02-22T01:23:14Z",
+    "primary_pr_merged_at": "2023-02-22T22:18:53Z",
+    "primary_author": "RustanLeino",
+    "primary_head_commit": "773971747ec76cd2f224000e2d42d6fd785e8f40",
+    "primary_merge_commit": "20d90ec43db21d224bb5db0020cc68a2d441143c",
+    "related_pr_created_at": "2023-02-22T21:41:30Z",
+    "related_pr_merged_at": "2023-02-23T21:06:17Z",
+    "related_author": "RustanLeino",
+    "related_head_commit": "7995ebd27e83e0ec69202b8905eac3c646450727",
+    "related_merge_commit": "0ef55d2ce872036c9a84793d151aec653e07bde5",
+    "source_file": "src/Collections/Sequences/Seq.dfy",
+    "source_blob_sha": "815970b9cfae27acae4f3c2fefde89a9e6241a9f",
+    "source_blob_url": "https://github.com/dafny-lang/libraries/blob/773971747ec76cd2f224000e2d42d6fd785e8f40/src%2FCollections%2FSequences%2FSeq.dfy"
+  },
+  "initial_verification_problem": {
+    "summary": "The corrected Dafny resolver disallowed allocation-state-dependent function expressions in reads clauses. Seq.Filter used f.reads in its frame, so the linked Dafny correction made a standard-library change necessary to keep the library verifying.",
+    "E1": "PASS",
+    "sources": [
+      "SRC-001",
+      "SRC-002"
+    ]
+  },
+  "repair_directions": [
+    {
+      "direction_id": "RD-01",
+      "repair_class": "CALLEE_SPEC",
+      "description": "Change Filter's exposed specification boundary: restrict f to a heap-independent arrow, restrict T to T(!new), use reads *, or use the ultimately adopted exact index-bounded union of f.reads(xs[i]).",
+      "evidence_status": [
+        "DISCUSSED",
+        "PROPOSED",
+        "IMPLEMENTED",
+        "ADOPTED"
+      ],
+      "sources": [
+        "SRC-002",
+        "SRC-003",
+        "SRC-004",
+        "SRC-006",
+        "SRC-007"
+      ],
+      "verifier_confirmed": false,
+      "verifier_confirmation_note": "The adopted patch was merged and the author said it should not affect verification, but no public source directly shows a Dafny verifier run for this exact library alternative."
+    },
+    {
+      "direction_id": "RD-02",
+      "repair_class": "IMPLEMENTATION_OR_ADAPTER",
+      "description": "Fork the API into more than one Filter function, each accommodating one of the specification fixes, to avoid forcing one restriction or unbounded frame on every consumer.",
+      "evidence_status": [
+        "DISCUSSED",
+        "PROPOSED"
+      ],
+      "sources": [
+        "SRC-002",
+        "SRC-003"
+      ],
+      "verifier_confirmed": false,
+      "verifier_confirmation_note": "The API-fork direction was discussed, but the public history does not contain an implementation or verifier run for it."
+    }
+  ],
+  "E2": {
+    "result": "PASS",
+    "directly_evidenced_classes": [
+      "CALLEE_SPEC",
+      "IMPLEMENTATION_OR_ADAPTER"
+    ],
+    "not_evidenced": [
+      "CALLER_SIDE"
+    ],
+    "boundary_note": "The multiple-Filter proposal is classified as implementation/adapter because it would add separate public entry points that accommodate distinct contracts; the other alternatives directly alter the callee's specification boundary."
+  },
+  "final_adopted_repair": {
+    "summary": "Replace the broad interim reads * choice with an exact frame set: objects read by f at indices of xs. The final PR state was merged.",
+    "repair_class": "CALLEE_SPEC",
+    "statuses": [
+      "IMPLEMENTED",
+      "ADOPTED"
+    ],
+    "sources": [
+      "SRC-004",
+      "SRC-006",
+      "SRC-007"
+    ]
+  },
+  "specification_api_decision": {
+    "E3": "PASS",
+    "summary": "Reviewers explicitly evaluated frame precision, restrictions on accepted functions and element types, possible consumer breakage, upgrade effort, API forking, and future backward compatibility. The author then selected an exact frame expression because it avoided the documented drawbacks, not merely because it was another edit that could satisfy the corrected resolver.",
+    "sources": [
+      "SRC-002",
+      "SRC-003",
+      "SRC-004",
+      "SRC-005"
+    ]
+  },
+  "grade": "GOLD",
+  "evidence_level": "R2",
+  "evidence_level_justification": "E1, E2, and explicit E3 pass, but two distinct repair classes do not each have direct public VERIFIER_CONFIRMED evidence.",
+  "allowed_claim": "This public workflow records multiple repair directions across different specification and API-implementation boundaries being considered in response to a Dafny verification problem, while the adopted choice was constrained by compatibility and specification considerations beyond verifier success alone.",
+  "claim_not_allowed": "Multiple verifier-valid repairs existed, or this case proves any M3 property, prevalence claim, organizational grouping principle, or necessity result.",
+  "observation_inference": [
+    {
+      "OBSERVED_SOURCE_FACT": "Dafny PR 3609 links libraries PR 99 as a necessary standard-library change and says the corrected resolver rejects some functions in reads clauses.",
+      "OUR_INTERPRETATION": "The library PR responds to a concrete verification-acceptance change rather than a hypothetical API redesign.",
+      "CLAIM_ALLOWED": "A real Dafny verification problem initiated the library repair.",
+      "CLAIM_NOT_ALLOWED": "The original Filter contract was semantically invalid in every Dafny version."
+    },
+    {
+      "OBSERVED_SOURCE_FACT": "PR 99 lists four fixes: restrict the function arrow, restrict T, broaden reads to *, or provide multiple Filter functions.",
+      "OUR_INTERPRETATION": "The history directly crosses a callee-specification boundary and an implementation/API-adapter boundary.",
+      "CLAIM_ALLOWED": "At least two repair classes were publicly considered.",
+      "CLAIM_NOT_ALLOWED": "Every listed alternative was implemented or verified."
+    },
+    {
+      "OBSERVED_SOURCE_FACT": "A reviewer warns of consumer breakage and upgrade cost; the author later adopts an exact frame expression described as avoiding the listed drawbacks.",
+      "OUR_INTERPRETATION": "Compatibility and specification precision constrained the selection independently of obtaining verifier acceptance.",
+      "CLAIM_ALLOWED": "The adopted choice involved explicit API/specification judgment beyond verifier success.",
+      "CLAIM_NOT_ALLOWED": "Backward compatibility was mechanically proved."
+    },
+    {
+      "OBSERVED_SOURCE_FACT": "No public record directly demonstrates that two distinct alternatives each passed Dafny verification.",
+      "OUR_INTERPRETATION": "The evidence supports R2 but not R3.",
+      "CLAIM_ALLOWED": "Multiple repair directions were considered.",
+      "CLAIM_NOT_ALLOWED": "Multiple verifier-valid repair directions existed."
+    }
+  ],
+  "source_provenance": [
+    {
+      "source_key": "SRC-001",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/dafny/pull/3609",
+      "source_id": "dafny-lang/dafny#3609",
+      "repository": "dafny-lang/dafny",
+      "identifier": "pull_request:3609",
+      "author": "RustanLeino",
+      "date": "2023-02-22T21:41:30Z",
+      "normalized_text": "Dafny PR 3609 explicitly links libraries PR 99 as a necessary standard-library change and says the corrected resolver rejects some functions in reads clauses.",
+      "content_sha256": "bbe55fb9e3702405bd159d00f1ea5b1b82a548c2c5b2831ceb21d41ef4292ea5"
+    },
+    {
+      "source_key": "SRC-002",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/pull/99",
+      "source_id": "dafny-lang/libraries#99",
+      "repository": "dafny-lang/libraries",
+      "identifier": "pull_request:99",
+      "author": "RustanLeino",
+      "date": "2023-02-22T01:23:14Z",
+      "normalized_text": "Libraries PR 99 says Filter’s frame declaration becomes invalid under the Dafny fix and enumerates four repair approaches with different restrictions and framing strength.",
+      "content_sha256": "99d0365c423f5d0ed196340eb236f0e11ae30e354c16ab89f6957869b7211126"
+    },
+    {
+      "source_key": "SRC-003",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/pull/99#pullrequestreview-1308549359",
+      "source_id": "1308549359",
+      "repository": "dafny-lang/libraries",
+      "identifier": "pull_request_review:1308549359",
+      "author": "robin-aws",
+      "date": "2023-02-22T05:28:26Z",
+      "normalized_text": "Reviewer robin-aws calls reads-star the best tradeoff but warns it can break consumers relying on the tighter frame and may require API forking.",
+      "content_sha256": "ea5aead69a8986754865e8d3d7b5c867f04d1b4d0aa5b827f72583555e7cf731"
+    },
+    {
+      "source_key": "SRC-004",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/pull/99#issuecomment-1440811631",
+      "source_id": "1440811631",
+      "repository": "dafny-lang/libraries",
+      "identifier": "issue_comment:1440811631",
+      "author": "RustanLeino",
+      "date": "2023-02-22T21:20:01Z",
+      "normalized_text": "Author Rustan Leino replaces reads-star with an exact index-bounded union, stating it has none of the listed drawbacks and updates the pull request.",
+      "content_sha256": "e97ebc175f3d62f88b46c6a0c216160a29fb2752354ded72460dd57af5a1a309"
+    },
+    {
+      "source_key": "SRC-005",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/pull/99#issuecomment-1440851004",
+      "source_id": "1440851004",
+      "repository": "dafny-lang/libraries",
+      "identifier": "issue_comment:1440851004",
+      "author": "robin-aws",
+      "date": "2023-02-22T21:50:43Z",
+      "normalized_text": "Reviewer robin-aws approves the exact formulation while explicitly retaining concern about eventual backward compatibility and the need to verify it.",
+      "content_sha256": "370b4dab2ade7dba5b19b09817964a6e7669fd4efe65d3483373bb7560c78afb"
+    },
+    {
+      "source_key": "SRC-006",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/commit/807e02d0c5125c76f99522a64a800733353936e9",
+      "source_id": "807e02d0c5125c76f99522a64a800733353936e9",
+      "repository": "dafny-lang/libraries",
+      "identifier": "commit:807e02d0c5125c76f99522a64a800733353936e9",
+      "author": "Rustan Leino",
+      "date": "2023-02-22T21:10:54Z",
+      "normalized_text": "Commit 807e02d0c5125c76f99522a64a800733353936e9 implements the improved exact reads clause in Seq.dfy.",
+      "content_sha256": "6d999386edecbb86a4f603f690652379a98f39f2b2f7e9cee164563f1f4ea0cf"
+    },
+    {
+      "source_key": "SRC-007",
+      "retrieved_at": "2026-08-13T14:01:34Z",
+      "source_url": "https://github.com/dafny-lang/libraries/commit/20d90ec43db21d224bb5db0020cc68a2d441143c",
+      "source_id": "20d90ec43db21d224bb5db0020cc68a2d441143c",
+      "repository": "dafny-lang/libraries",
+      "identifier": "commit:20d90ec43db21d224bb5db0020cc68a2d441143c",
+      "author": "Rustan Leino",
+      "date": "2023-02-22T22:18:53Z",
+      "normalized_text": "Merge commit 20d90ec43db21d224bb5db0020cc68a2d441143c records adoption of the final PR 99 state on 2023-02-22.",
+      "content_sha256": "5f4ff225287d2e48e88b0b5436210ee2800a64bd9b1b1976356d1f5578f1b463"
+    }
+  ],
+  "limitations": [
+    "This is one selected public case and does not support a prevalence estimate.",
+    "Selection is protocol-bounded and subject to search-ranking and selection bias.",
+    "Issue and pull-request history may omit offline discussion.",
+    "The public history does not verifier-confirm two distinct alternatives, so R3 language is prohibited.",
+    "The source authors did not conceptualize the case as reportability.",
+    "No claim is made that this project's grouping or responsibility boundaries match our grouping abstractions.",
+    "No claim is made that M3 was necessary for this workflow.",
+    "The case is not evidence for Candidate B manuscript claims in this task."
+  ],
+  "new_real_case_dafny_experiments": 0,
+  "new_lean_formalization": 0
+}

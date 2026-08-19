@@ -1,0 +1,167 @@
+{
+  "protocol_id": "dafny-real-workflow-search-v1",
+  "protocol_version": "1.0.0",
+  "frozen_at": "2026-08-13T00:00:00+09:00",
+  "search_date": "2026-08-13",
+  "scientific_target": "One public Dafny issue, pull request, or linked history with an actual verification problem, at least two directly evidenced repair classes across responsibility or abstraction boundaries, and an explicit specification, API, compatibility, semantic, or responsibility judgment beyond verifier success.",
+  "access": {
+    "primary_method": "GitHub CLI gh api GET /search/issues using the public GitHub Search API, followed by gh api retrieval of issue, pull-request, comment, review, commit, and repository content records",
+    "secondary_method": "Public github.com pages and raw.githubusercontent.com URLs may be used to inspect source records or render links when the GitHub API representation is incomplete",
+    "authentication": "Use the environment's existing GitHub authentication if available; do not access private repositories",
+    "source_policy": "Only public source history is eligible. Record stable GitHub identifiers and immutable commit SHAs where available."
+  },
+  "scopes": [
+    {
+      "scope_id": "dafny-main",
+      "domain": "dafny-lang/dafny",
+      "query_suffix": "repo:dafny-lang/dafny",
+      "preference": "Prefer user or project verification workflows over compiler-internal work."
+    },
+    {
+      "scope_id": "dafny-libraries",
+      "domain": "dafny-lang/libraries or its current authoritative successor",
+      "query_suffix": "repo:dafny-lang/libraries",
+      "successor_resolution": "Before candidate evaluation, resolve whether dafny-lang/libraries exists or redirects. If GitHub identifies a successor, use that repository without changing query families or caps and record the resolution as infrastructure provenance."
+    },
+    {
+      "scope_id": "global-public",
+      "domain": "Public GitHub issues and pull requests discoverable by GitHub issue search",
+      "query_suffix": "Dafny",
+      "preference": "Prefer repositories containing Dafny user or project verification workflows."
+    }
+  ],
+  "query_construction": {
+    "rule": "For each query family and each scope, concatenate search_terms, one ASCII space, and query_suffix. Pass the resulting exact string as q to GET /search/issues.",
+    "type_filter": "No issue/PR type filter; both issues and pull requests are eligible.",
+    "exact_executed_query_recording": "The ledger must record every constructed q string actually executed."
+  },
+  "query_families": [
+    {
+      "family_id": "Q01",
+      "semantic_family": "verification failure + requires/precondition",
+      "search_terms": "\"verification failure\" requires"
+    },
+    {
+      "family_id": "Q02",
+      "semantic_family": "verification failure + ensures/postcondition",
+      "search_terms": "\"verification failure\" ensures"
+    },
+    {
+      "family_id": "Q03",
+      "semantic_family": "could not prove + requires",
+      "search_terms": "\"could not prove\" requires"
+    },
+    {
+      "family_id": "Q04",
+      "semantic_family": "could not prove + ensures",
+      "search_terms": "\"could not prove\" ensures"
+    },
+    {
+      "family_id": "Q05",
+      "semantic_family": "contract change + verification",
+      "search_terms": "\"contract change\" verification"
+    },
+    {
+      "family_id": "Q06",
+      "semantic_family": "precondition + compatibility/breaking",
+      "search_terms": "precondition compatibility breaking"
+    },
+    {
+      "family_id": "Q07",
+      "semantic_family": "postcondition + compatibility/API",
+      "search_terms": "postcondition compatibility API"
+    },
+    {
+      "family_id": "Q08",
+      "semantic_family": "wrapper/adapter + Dafny verification",
+      "search_terms": "wrapper adapter verification"
+    },
+    {
+      "family_id": "Q09",
+      "semantic_family": "caller/callee + Dafny",
+      "search_terms": "caller callee"
+    },
+    {
+      "family_id": "Q10",
+      "semantic_family": "requires + workaround",
+      "search_terms": "requires workaround"
+    },
+    {
+      "family_id": "Q11",
+      "semantic_family": "verification + public API",
+      "search_terms": "verification \"public API\""
+    },
+    {
+      "family_id": "Q12",
+      "semantic_family": "verification + backward compatibility",
+      "search_terms": "verification \"backward compatibility\""
+    }
+  ],
+  "result_ordering": {
+    "sort": "best-match",
+    "order": "GitHub Search API default relevance order",
+    "stability_note": "GitHub relevance rankings may change after the frozen search date; stored query outcomes and source hashes bind this execution."
+  },
+  "inspection": {
+    "cap_per_query_family_per_scope": 5,
+    "maximum_queries": 36,
+    "maximum_unique_query_slots": 180,
+    "api_page_size": 20,
+    "potential_relevance_screen": "A result is potentially relevant when its title, body, linked discussion, patch, or referenced failure concerns Dafny verification and suggests a contract, caller/callee, implementation, wrapper, API, compatibility, or semantic decision. Obvious documentation-only, dependency-update-only, bot-only, non-Dafny, and verifier-performance-only results may be screened out.",
+    "fill_rule": "Inspect ranked results until five unique potentially relevant results have been inspected or the first 20 API results are exhausted. Screened-out records are counted in raw results but not unique inspected results."
+  },
+  "duplicate_handling": {
+    "identity": "Canonical repository full name plus GitHub issue or pull-request number",
+    "rule": "A duplicate encountered under another query is not re-inspected and does not consume that query's inspection cap. Continue down that query's first 20 results to fill the cap where possible.",
+    "cross_repository_links": "A linked issue and pull request are distinct records, but may be grouped into one candidate history when the public sources explicitly connect them.",
+    "counting": "Report raw result occurrences separately from globally unique inspected records."
+  },
+  "serious_candidate_definition": {
+    "threshold": "Preserve a candidate in the ledger when E1 is directly evidenced and either (a) at least two repair-class leads are present in public history or (b) one repair-class lead plus explicit E3-relevant specification, API, compatibility, semantic, or responsibility language is present.",
+    "preservation": "All serious candidates, including rejected ones, remain in the final ledger."
+  },
+  "repair_taxonomy": [
+    "CALLER_SIDE",
+    "CALLEE_SPEC",
+    "IMPLEMENTATION_OR_ADAPTER"
+  ],
+  "evidence_statuses": [
+    "DISCUSSED",
+    "PROPOSED",
+    "IMPLEMENTED",
+    "VERIFIER_CONFIRMED",
+    "ADOPTED",
+    "REJECTED"
+  ],
+  "rubric": {
+    "version": "GSR-1.0",
+    "E1": "Public evidence of an actual Dafny verification problem, such as verifier output, a failing .dfy test or CI check, an explicit failure description, or a before-fix commit history.",
+    "E2": "At least two distinct repair classes are directly evidenced in public history; imagined alternatives do not count.",
+    "E3": "Public evidence that the choice involved intended semantics, API or backward compatibility, public contract stability, responsibility, user-facing behavior, maintainability, or a wrapper-versus-contract decision beyond merely making verification pass.",
+    "GOLD": "E1, E2, and E3 all pass; E3 is explicit or clearly contrasted in a public source; enough stable history exists to reconstruct the decision.",
+    "SILVER": "E1 and E2 pass but E3 is partly inferential, or the historical evidence is incomplete, or alternatives are insufficiently documented.",
+    "REJECT": "E1 fails, E2 fails, alternatives are invented, the change is only proof-tactic or performance work, there is no responsibility or abstraction distinction, or there is no meaningful specification or API decision.",
+    "R2": "E1/E2/E3 pass and multiple repair directions are evidenced, but at least two distinct directions do not each have direct VERIFIER_CONFIRMED evidence.",
+    "R3": "At least two distinct repair directions each have direct public VERIFIER_CONFIRMED evidence, in addition to E1/E2/E3."
+  },
+  "stopping_rule": {
+    "normal": "Execute all 36 scope-family queries and complete candidate assessment.",
+    "early_stop": "Stop before all 36 queries only after exactly one GOLD case has been secured, every GOLD criterion and source-provenance field has been fully checked, and its evidence level has been assigned. Record the exact stopping point and all unexecuted queries.",
+    "selection": "Select exactly one GOLD case. If multiple GOLD cases are found before completion, select the first fully secured in frozen result order and retain other serious candidates in the ledger.",
+    "negative_outcome": "If no GOLD case is found after all 36 queries, report REAL_DAFNY_CASE = NOT_FOUND_WITHIN_PROTOCOL and SEARCH_PROTOCOL_COMPLETED = PASS; do not infer global non-existence."
+  },
+  "maximum_protocol_scope": {
+    "queries": 36,
+    "api_results_considered_per_query": 20,
+    "unique_potentially_relevant_inspections_per_query": 5,
+    "expansion": "No extra query families, repositories, search engines, or result pages may be added under v1. A technically defective protocol requires a recorded new version and a restarted search."
+  },
+  "prohibited_actions": [
+    "Modify this protocol after candidate outcomes are observed",
+    "Create a synthetic Dafny reproducer or benchmark",
+    "Run a new real-case Dafny experiment",
+    "Add a new repair enumerator or Case C",
+    "Add Lean formalization",
+    "Use the selected case as Candidate B evidence in this task"
+  ]
+}

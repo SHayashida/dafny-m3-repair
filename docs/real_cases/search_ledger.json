@@ -1,0 +1,129 @@
+{
+  "ledger_id": "dafny-real-workflow-search-ledger-v1",
+  "protocol": {
+    "path": "docs/real_cases/real_case_search_protocol.json",
+    "protocol_id": "dafny-real-workflow-search-v1",
+    "sha256": "2ef3b43143a49aab678c100a09083a02579c44489acc81f607390d69d0ad3d7c",
+    "search_date": "2026-08-13"
+  },
+  "execution": {
+    "access_method": "GitHub CLI gh api GET /search/issues, followed by public GitHub API and GitHub connector source retrieval",
+    "authoritative_snapshot_retrieved_at": "2026-08-13T13:52:50.607875Z",
+    "query_definitions_executed": 36,
+    "query_definitions_completed": 36,
+    "api_total_count_occurrences": 743,
+    "api_returned_occurrences": 341,
+    "unique_results_inspected": 102,
+    "serious_candidates": 2,
+    "gold_candidates": 1,
+    "silver_candidates": 0,
+    "rejected_serious_candidates": 1,
+    "stopping_rule": "The full 36-query protocol was completed; early stopping was not used.",
+    "protocol_result": "PASS",
+    "infrastructure_note": "dafny-lang/libraries resolved directly as an active public repository with default branch master; no successor substitution was needed.",
+    "retry_incident": "The first transport attempt completed 30 unique query definitions and then hit GitHub's search rate limit before writing its item checkpoint. After the documented rate-limit reset, the same 36 frozen query definitions were replayed with throttling and per-query checkpointing. The authoritative counts in this ledger are from that complete replay; no query, scope, order, cap, or candidate criterion changed."
+  },
+  "screening": {
+    "cap_per_query_family_per_scope": 5,
+    "api_results_considered_per_query": 20,
+    "duplicate_identity": "repository#number",
+    "method": "In API rank order, retain public Dafny results with verification, contract, caller/callee, implementation, wrapper, API, compatibility, or semantic context; skip obvious non-Dafny, documentation-only, dependency-only, bot-only, and verifier-performance-only records. Global duplicates did not consume a cap.",
+    "note": "Inspected identities below are compact audit records; only serious candidates receive full E1/E2/E3 records."
+  },
+  "executed_queries": [
+    {"scope":"dafny-main","family":"Q01","q":"\"verification failure\" requires repo:dafny-lang/dafny","total":7,"returned":7,"inspected":["dafny-lang/dafny#4901","dafny-lang/dafny#1362","dafny-lang/dafny#5370","dafny-lang/dafny#1760","dafny-lang/dafny#5251"]},
+    {"scope":"dafny-main","family":"Q02","q":"\"verification failure\" ensures repo:dafny-lang/dafny","total":12,"returned":12,"inspected":["dafny-lang/dafny#4667","dafny-lang/dafny#6291","dafny-lang/dafny#3758","dafny-lang/dafny#5253","dafny-lang/dafny#6280"]},
+    {"scope":"dafny-main","family":"Q03","q":"\"could not prove\" requires repo:dafny-lang/dafny","total":40,"returned":20,"inspected":["dafny-lang/dafny#6114","dafny-lang/dafny#6244","dafny-lang/dafny#6116","dafny-lang/dafny#5872","dafny-lang/dafny#3098"]},
+    {"scope":"dafny-main","family":"Q04","q":"\"could not prove\" ensures repo:dafny-lang/dafny","total":43,"returned":20,"inspected":["dafny-lang/dafny#6405","dafny-lang/dafny#3901","dafny-lang/dafny#6475","dafny-lang/dafny#6189","dafny-lang/dafny#3954"]},
+    {"scope":"dafny-main","family":"Q05","q":"\"contract change\" verification repo:dafny-lang/dafny","total":6,"returned":6,"inspected":["dafny-lang/dafny#6285","dafny-lang/dafny#4136","dafny-lang/dafny#2337","dafny-lang/dafny#2399","dafny-lang/dafny#1422"]},
+    {"scope":"dafny-main","family":"Q06","q":"precondition compatibility breaking repo:dafny-lang/dafny","total":1,"returned":1,"inspected":["dafny-lang/dafny#455"]},
+    {"scope":"dafny-main","family":"Q07","q":"postcondition compatibility API repo:dafny-lang/dafny","total":1,"returned":1,"inspected":["dafny-lang/dafny#461"]},
+    {"scope":"dafny-main","family":"Q08","q":"wrapper adapter verification repo:dafny-lang/dafny","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-main","family":"Q09","q":"caller callee repo:dafny-lang/dafny","total":18,"returned":18,"inspected":["dafny-lang/dafny#2436","dafny-lang/dafny#3621","dafny-lang/dafny#1588","dafny-lang/dafny#5490","dafny-lang/dafny#6313"]},
+    {"scope":"dafny-main","family":"Q10","q":"requires workaround repo:dafny-lang/dafny","total":71,"returned":20,"inspected":["dafny-lang/dafny#2137","dafny-lang/dafny#4696","dafny-lang/dafny#2348","dafny-lang/dafny#2020","dafny-lang/dafny#6277"]},
+    {"scope":"dafny-main","family":"Q11","q":"verification \"public API\" repo:dafny-lang/dafny","total":7,"returned":7,"inspected":["dafny-lang/dafny#2094","dafny-lang/dafny#1942","dafny-lang/dafny#1923","dafny-lang/dafny#2215","dafny-lang/dafny#1801"]},
+    {"scope":"dafny-main","family":"Q12","q":"verification \"backward compatibility\" repo:dafny-lang/dafny","total":7,"returned":7,"inspected":["dafny-lang/dafny#6340","dafny-lang/dafny#6307","dafny-lang/dafny#5257","dafny-lang/dafny#6286","dafny-lang/dafny#5835"]},
+    {"scope":"dafny-libraries","family":"Q01","q":"\"verification failure\" requires repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q02","q":"\"verification failure\" ensures repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q03","q":"\"could not prove\" requires repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q04","q":"\"could not prove\" ensures repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q05","q":"\"contract change\" verification repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q06","q":"precondition compatibility breaking repo:dafny-lang/libraries","total":2,"returned":2,"inspected":["dafny-lang/libraries#99","dafny-lang/libraries#7"]},
+    {"scope":"dafny-libraries","family":"Q07","q":"postcondition compatibility API repo:dafny-lang/libraries","total":1,"returned":1,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q08","q":"wrapper adapter verification repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q09","q":"caller callee repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"dafny-libraries","family":"Q10","q":"requires workaround repo:dafny-lang/libraries","total":2,"returned":2,"inspected":["dafny-lang/libraries#50"]},
+    {"scope":"dafny-libraries","family":"Q11","q":"verification \"public API\" repo:dafny-lang/libraries","total":1,"returned":1,"inspected":["dafny-lang/libraries#51"]},
+    {"scope":"dafny-libraries","family":"Q12","q":"verification \"backward compatibility\" repo:dafny-lang/libraries","total":0,"returned":0,"inspected":[]},
+    {"scope":"global-public","family":"Q01","q":"\"verification failure\" requires Dafny","total":42,"returned":20,"inspected":["leynos/agent-helper-scripts#25","UQ-PAC/BASIL#127","melek/proven#7","PayloadGuard-PLG/payloadguard-evidence#42","HardMax71/spec_to_rest#460"]},
+    {"scope":"global-public","family":"Q02","q":"\"verification failure\" ensures Dafny","total":43,"returned":20,"inspected":["assura-lang/assura#703","HardMax71/spec_to_rest#457","haalfi/remote-store#664","haalfi/remote-store#937","HardMax71/spec_to_rest#458"]},
+    {"scope":"global-public","family":"Q03","q":"\"could not prove\" requires Dafny","total":52,"returned":20,"inspected":["nolanlwin/lemmapy#8","dafny-lang/dafny#6232","dafny-lang/dafny#6379","dafny-lang/dafny#4760","dafny-lang/dafny#4973"]},
+    {"scope":"global-public","family":"Q04","q":"\"could not prove\" ensures Dafny","total":60,"returned":20,"inspected":["fuzz-d/dafny-bugs#8","dafny-lang/dafny#5148","dafny-lang/dafny#4920","dafny-lang/dafny#6391","dafny-lang/dafny#6158"]},
+    {"scope":"global-public","family":"Q05","q":"\"contract change\" verification Dafny","total":63,"returned":20,"inspected":["leynos/df12-build#62","henriman/VerifiedSCION#17","PayloadGuard-PLG/payloadguard-evidence#55","PayloadGuard-PLG/payloadguard-evidence#73","haalfi/remote-store#940"]},
+    {"scope":"global-public","family":"Q06","q":"precondition compatibility breaking Dafny","total":9,"returned":9,"inspected":["esbmc/esbmc#3266"]},
+    {"scope":"global-public","family":"Q07","q":"postcondition compatibility API Dafny","total":7,"returned":7,"inspected":["AamindMandragora/verified-agent-synthesis#3"]},
+    {"scope":"global-public","family":"Q08","q":"wrapper adapter verification Dafny","total":20,"returned":20,"inspected":["theronic/eacl#101","leynos/df12-build#64","HardMax71/spec_to_rest#511","leynos/df12-build#59","haalfi/remote-store#689"]},
+    {"scope":"global-public","family":"Q09","q":"caller callee Dafny","total":52,"returned":20,"inspected":["veri-md/veri-build#13","aptos-labs/aptos-core#20275","runtimeverification/_audits_Ethereum-optimism_optimism_interopv2#88","project-everest/vale#44","scottschreckengaust/e2e-ministack#97"]},
+    {"scope":"global-public","family":"Q10","q":"requires workaround Dafny","total":104,"returned":20,"inspected":["dafny-lang/dafny#6491","boogie-org/boogie-friends#5","dafny-lang/dafny#5125","dafny-lang/dafny#1382","dafny-lang/dafny#6230"]},
+    {"scope":"global-public","family":"Q11","q":"verification \"public API\" Dafny","total":44,"returned":20,"inspected":["brainfucknow/auctions-api-csharp#1","aws/aws-database-encryption-sdk-dynamodb#2279","theronic/eacl#113","kapisree/Azure-Microservice#11","haalfi/remote-store#692"]},
+    {"scope":"global-public","family":"Q12","q":"verification \"backward compatibility\" Dafny","total":28,"returned":20,"inspected":["nicholls-inc/claude-code-marketplace#138","qhanam/runbooks#15","qhanam/runbooks#16","Beneficial-AI-Foundation/vericoding#23"]}
+  ],
+  "serious_candidate_records": [
+    {
+      "repository": "dafny-lang/libraries",
+      "issue_or_pr": "pull_request:99",
+      "url": "https://github.com/dafny-lang/libraries/pull/99",
+      "verification_failure": "A corrected Dafny resolver rejected the allocation-dependent reads pattern, making a change necessary to keep the standard library verifying; dafny-lang/dafny#3609 explicitly links this PR.",
+      "repair_directions": [
+        {
+          "repair_class": "CALLEE_SPEC",
+          "evidence_status": ["DISCUSSED","PROPOSED","IMPLEMENTED","ADOPTED"],
+          "sources": ["https://github.com/dafny-lang/libraries/pull/99","https://github.com/dafny-lang/libraries/pull/99#issuecomment-1440811631"]
+        },
+        {
+          "repair_class": "IMPLEMENTATION_OR_ADAPTER",
+          "evidence_status": ["DISCUSSED","PROPOSED"],
+          "sources": ["https://github.com/dafny-lang/libraries/pull/99","https://github.com/dafny-lang/libraries/pull/99#pullrequestreview-1308549359"]
+        }
+      ],
+      "e3_evidence": [
+        "https://github.com/dafny-lang/libraries/pull/99#pullrequestreview-1308549359",
+        "https://github.com/dafny-lang/libraries/pull/99#issuecomment-1440851004"
+      ],
+      "E1": "PASS",
+      "E2": "PASS",
+      "E3": "PASS",
+      "evidence_level": "R2",
+      "grade": "GOLD",
+      "rejection_reason": ""
+    },
+    {
+      "repository": "theronic/eacl",
+      "issue_or_pr": "pull_request:101",
+      "url": "https://github.com/theronic/eacl/pull/101",
+      "verification_failure": "The audit PR records multiple distinct verification, clean-build, generated-boundary, and CI findings rather than one bounded initial verification failure.",
+      "repair_directions": [],
+      "e3_evidence": ["The PR explicitly narrows assurance claims and distinguishes generated decisions from trusted adapters and runtime boundaries."],
+      "E1": "PASS",
+      "E2": "FAIL",
+      "E3": "PASS",
+      "evidence_level": "NONE",
+      "grade": "REJECT",
+      "rejection_reason": "The record is a broad assurance audit and multi-finding cutover. Repair directions belonging to different failures cannot be aggregated to establish two classes for one shared verification problem."
+    }
+  ],
+  "selected_case": "DAFNY-REAL-CASE-01",
+  "result": {
+    "REAL_DAFNY_CASE": "FOUND",
+    "GRADE": "GOLD",
+    "EVIDENCE_LEVEL": "R2",
+    "E1": "PASS",
+    "E2": "PASS",
+    "E3": "PASS",
+    "OBSERVATION_INFERENCE_SEPARATION": "PASS",
+    "SOURCE_PROVENANCE": "PASS",
+    "SEARCH_PROTOCOL_COMPLETED": "PASS",
+    "NEW_REAL_CASE_DAFNY_EXPERIMENTS": 0,
+    "NEW_LEAN_FORMALIZATION": 0
+  }
+}
